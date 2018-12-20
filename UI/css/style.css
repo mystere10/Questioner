@@ -115,7 +115,7 @@ header a:hover{
 
 .login{
 	width: 320px;
-	height: 420px;
+	height: 100%;
 	background: #2f3640;
 	color: #ffffff;
 	margin: auto;
@@ -185,6 +185,18 @@ header a:hover{
 .login a:hover{
 	color: #c23616;
 }
+
+
+/*.register{
+	width: 320px;
+	height: 100%;
+	background: #2f3640;
+	color: #ffffff;
+	margin: auto;
+	margin-top: 20px;
+	box-sizing: border-box;
+	padding: 70px 30px;
+}*/
 
 /* FOOTER*/
 
