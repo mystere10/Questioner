@@ -1,0 +1,323 @@
+body{
+	font-family: Arial, Hervetica, sans-serif;
+	font-size: 15px;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+}
+
+.container{
+	width: 80%;
+	margin: auto;
+	overflow: hidden;
+}
+
+header{
+	background-color: #f39c12;
+	color: #34495e;
+	padding-top: 30px;
+	min-height: 70px;
+	border-bottom: #34495e 3px solid;
+}
+
+header a{
+	color: #34495e;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 16px;
+}
+
+header ul{
+	margin: 0;
+	padding: 0;
+}
+
+header li{
+	float: left;
+	display: inline;
+	padding: 0 20px 0 20px;
+}
+
+header #logo-img{
+	height: 100px;
+	width: 100px;
+	margin: 0;
+	margin-bottom: 10px;
+	margin-top: : 10px;
+}
+
+header #logo{
+	float: left;
+}
+
+header nav{
+	float: right;
+	margin-top: 30px;
+}
+
+header .current a{
+	color: #2d3436;
+	font-weight: bold;
+}
+
+header a:hover{
+	color: #2d3436;
+	font-weight: bold;
+}
+
+/* Carousel */
+
+#carousel{
+	min-height: 400px;
+	background:url(../assets/meetup.jpg) no-repeat 0 -200px;
+	text-align: center;
+	color: #ffffff;
+}	
+
+#carousel h1{
+	margin-top: 100px;
+	font-size: 55px;
+	margin-bottom: 10px;
+}
+
+#carousel p{
+	font-size: 15px;
+}
+
+#title{
+	padding: 15px;
+	color: #ffffff;
+	background: #34495e; 
+	text-align: center;
+}
+
+/* Events */
+
+#events{
+	margin-top: 20px;
+ }
+
+#events .photo{
+	float: left;
+	text-align: center;
+	width: 30%;
+	padding: 10px;
+}
+
+#events .photo img{
+	width: 200px;
+}
+
+
+
+/* LOGIN FORM */
+
+.login{
+	width: 320px;
+	height: 100%;
+	background: #2f3640;
+	color: #ffffff;
+	margin: auto;
+	margin-top: 20px;
+	box-sizing: border-box;
+	padding: 70px 30px;
+}
+
+.head{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	top: -50px;
+	left: calc(50% - 50px);
+}
+
+.login h1{
+	margin: 0;
+	padding: 0 0 20px;
+	text-align: center;
+	font-size: 22px;
+}
+
+.login p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+.login input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.login input[type="text"], input[type="password"]{
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+}
+
+.login input[type="submit"]{
+	border: none;
+	outline: none;
+	height: 40px;
+	background: #fbc531;
+	border-radius: 20px;
+}
+
+.login input[type="submit"]:hover{
+	cursor: pointer;
+	background:#c23616;
+	color: #fff;
+}
+
+.login a{
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 20px;
+	color: #dcdde1;
+}
+
+.login a:hover{
+	color: #c23616;
+}
+
+/* FOOTER*/
+
+footer{
+	padding: 20px;
+	margin-top: 20px;
+	color: #ffffff;
+	background-color: #34495e;
+	text-align: center;
+}
+
+/* STYLING ADMINPAGE
+
+TABLE */
+
+.table{
+	width: 100%;
+	font-family: 'Arial';
+	margin: 25px auto;
+	border-collapse: collapse;
+	border: 1px solid #eee;
+	border-bottom: 2px solid #00cccc;
+	box-shadow: 0px 0px 20px
+	rgba(0,0,0,0.10),
+		0px 10px 20px
+	rgba(0,0,0,0.05),
+     0px 20px 20px rgba(0,0,0,0.05);
+}
+
+
+.table th{
+	background: #00cccc;
+	padding: 15px;
+	color: #ffffff;
+	text-align: left;
+
+}
+
+.table td{
+	padding: 15px;
+	text-align: left;
+	font-family: 'Arial';
+
+}
+
+.table tr:hover{
+	background-color: #9AECDB;
+}
+
+.table img{
+	padding: 5px 10px;
+	text-align: center;
+	display: inline-block;
+}
+
+/* Creating meetup */
+
+.aside #meetup{
+	float: right;
+	width: 30%;
+	margin-top: 10px;
+}
+
+.main{
+	float: left;
+	width: 65%
+}
+
+#meetup li{
+	list-style-type: none;
+	padding: 20px;
+	border: #cccccc solid 1px;
+	margin-bottom: 5px;
+	background: #e6e6e6e6;
+}
+
+.main input, textarea{
+	width: 50%;
+	padding: 5px;
+}
+
+.main form{
+	margin-top: 10px;
+	padding: 0 0 20px;
+
+}
+
+.main form p{
+	font-weight: bold;
+
+}
+
+.main input[type="submit"]{
+	border: none;
+	background: #34495e;
+	color: #ffffff;
+	border-radius: 10px;
+}
+
+.main input[type="submit"]:hover{
+	background: #079992;
+	cursor: pointer;
+}
+
+.main input[type="text"], input[type="date"], textarea{
+	border:1px solid #DADADA;
+	
+}
+
+/* User page */
+
+.main li{
+	list-style-type: none;
+}
+
+#postcomment{
+	display: none;
+}
+
+#meetup img{
+	border-radius: 50%;
+	width: 50%;
+}
+
+.meetup{
+	list-style-type: none;
+	padding: 20px;
+	border: #cccccc solid 1px;
+	margin-bottom: 5px;
+	background: #e6e6e6e6;
+	text-align: center;
+}
+
+.meetup img{
+	border-radius: 50%;
+}
