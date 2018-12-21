@@ -240,3 +240,57 @@ TABLE */
 	text-align: center;
 	display: inline-block;
 }
+
+/* Creating meetup */
+
+.aside #meetup{
+	float: right;
+	width: 30%;
+	margin-top: 10px;
+}
+
+.main{
+	float: left;
+	width: 65%
+}
+
+#meetup li{
+	list-style-type: none;
+	padding: 20px;
+	border: #cccccc solid 1px;
+	margin-bottom: 5px;
+	background: #e6e6e6e6;
+}
+
+.main input, textarea{
+	width: 50%;
+	padding: 5px;
+}
+
+.main form{
+	margin-top: 10px;
+	padding: 0 0 20px;
+
+}
+
+.main form p{
+	font-weight: bold;
+
+}
+
+.main input[type="submit"]{
+	border: none;
+	background: #34495e;
+	color: #ffffff;
+	border-radius: 10px;
+}
+
+.main input[type="submit"]:hover{
+	background: #079992;
+	cursor: pointer;
+}
+
+.main input[type="text"], input[type="date"], textarea{
+	border:1px solid #DADADA;
+	
+}
