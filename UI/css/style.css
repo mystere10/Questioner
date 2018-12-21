@@ -321,3 +321,18 @@ TABLE */
 .meetup img{
 	border-radius: 50%;
 }
+
+
+#meetupk li{
+	list-style-type: none;
+	padding: 20px;
+	border: #cccccc solid 1px;
+	margin-bottom: 5px;
+	background: #e6e6e6e6;
+}
+
+.aside #meetupk{
+	float: right;
+	width: 30%;
+	margin-top: 10px;
+}
