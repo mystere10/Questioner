@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<nav>
+				<ul>
+					<li class="current"><a href="admin.html">Meetups</a></li>
+					<li><a href="create.html">Create Meetup</a></li>
+					<li><a href="login.html">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<hr>
+	<section id="title">
+		<div class="container">
+			<h1>List of meetups</h1>
+		</div>
+	</section>
+		<section>
+			<div class="events">
+				<div class="container">
+						<table class="table">
+							<tr>
+								<th>Topics</th>
+								<th>Location</th>
+								<th>Happening On</th>
+								<th>Tag</th>
+								<th colspan="2">Action</th>
+							</tr>
+
+							<tr>
+								<td>Eradicating drugs</td>
+								<td>Kigali telecom house</td>
+								<td>2019-01-19 03:00:00</td>
+								<td>Tags</td>
+								<td><a href="#"><img src="./assets/edit.png"></a>
+									<a href="#" onclick="cancel()"><img src="./assets/delete.png"></a></td>
+							</tr>
+
+							<tr>
+								<td>Preventing force marriage</td>
+								<td>Kigali telecom house</td>
+								<td>2019-02-25 03:00:00</td>
+								<td>Tags</td>
+								<td><a href="#"><img src="./assets/edit.png"></a>
+									<a href="#" onclick="cancel()"><img src="./assets/delete.png"></a></td>
+							</tr>
+							<tr>
+								<td>What to do to increase the quality of education</td>
+								<td>Kigali telecom house</td>
+								<td>2019-5-6 03:00:00</td>
+								<td>Tags</td>
+								<td><a href="#"><img src="./assets/edit.png"></a>
+									<a href="#" onclick="cancel()"><img src="./assets/delete.png"></a></td>
+							</tr>
+
+							<tr>
+								<td>Is sexual education necessary to children?</td>
+								<td>Kigali telecom house</td>
+								<td>2019-01-15 03:00:00</td>
+								<td>Tags</td>
+								<td><a href="#" ><img src="./assets/edit.png"></a>
+									<a href="#" onclick="cancel()"><img src="./assets/delete.png"></a></td>
+							</tr>
+
+							<tr>
+								<td>Hygiene and sanitation at home</td>
+								<td>Kigali telecom house</td>
+								<td>2019-05-01 03:00:00</td>
+								<td>Tags</td>
+								<td><a href="#"><img src="./assets/edit.png"></a>
+									<a href="#" onclick="cancel()"><img src="./assets/delete.png"></a></td>
+							</tr>
+
+							<tr>
+								<td>Girls education</td>
+								<td>Kigali telecom house</td>
+								<td>2019-06-09 03:00:00</td>
+								<td>Tags</td>
+								<td><a href="#"><img src="./assets/edit.png"></a>
+									<a href="#" onclick="cancel()"><img src="./assets/delete.png"></a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+		</section>	
+	
+	</body>
+	<footer>
+			<p>Questioner, copyright &copy; 2018</p>
+	</footer>
+</html>
+
+<script type="text/javascript">
+	
+	function cancel(){
+		alert("Are you sure?");
+	}
+</script>
