@@ -310,6 +310,15 @@ TABLE */
 	width: 50%;
 }
 
-#meetup h1{
-	
+.meetup{
+	list-style-type: none;
+	padding: 20px;
+	border: #cccccc solid 1px;
+	margin-bottom: 5px;
+	background: #e6e6e6e6;
+	text-align: center;
+}
+
+.meetup img{
+	border-radius: 50%;
 }
