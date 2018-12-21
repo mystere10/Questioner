@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin | Create Meetup</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+	<script type="text/javascript">
+		var countlikes = 0;
+		var countunlikes = 0;
+
+		var countlikes2 = 0;
+		var countunlikes2 = 0;
+
+		function add(){
+			alert("Liked");
+			countlikes++;
+			document.getElementById("add").innerHTML = countlikes;
+			console.log(countlikes);
+			
+		}
+
+
+		function substract(){
+			alert("Unliked");
+			countunlikes++;
+			document.getElementById("sub").innerHTML = countunlikes;
+			console.log(countunlikes);
+
+		}
+
+		function preventing(){
+			
+			alert("Liked");
+			countlikes2++;
+			document.getElementById("prev").innerHTML = countlikes2;
+			console.log(countlikes);
+		}
+
+		function preventing2(){
+			alert("Unliked");
+			countunlikes2++;
+			document.getElementById("preventing2").innerHTML = countunlikes2;
+			console.log(countunlikes);
+
+		}
+		
+	</script>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<nav>
+				<ul>
+					<li class="current"><a href="admin.html">Meetups</a></li>
+					<li><a href="create.html">Create Meetup</a></li>
+					<li><a href="login.html">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<hr>
+	<section id="title">
+		<div class="container">
+			<h1>Create a meetup</h1>
+		</div>
+	</section>
+		<section>
+			<div class="events">
+				<div class="container">
+					<div class="main">
+						<form>
+							<p>Location</p>
+							<input type="text" name="location">
+
+							<p>Happening On</p>
+							<input type="date" name="hapeningon">
+
+							<p>Add tags</p>
+							<input type="text" name="tags">
+
+							<p>Topic</p>
+							<textarea cols="10" rows="10">Add a topic here...</textarea>
+							<input type="submit" name="submit" value="create">
+						</form>
+					</div>
+
+					<aside class="aside">
+						<ul id="meetup">
+							<li>
+								<h3>Eradicating drugs</h3>
+								<p>Location: Kigali telecom house</p>
+								<p>Time: 2019-01-19 03:00:00</p>
+								<hr>
+								<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+
+									<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+
+									<a href="#"><span><img src="./assets/comment.png"></span></a>
+								</p>
+							</li>
+
+							<li>
+								<h3>Preventing force marriage</h3>
+								<p>Location: Kigali telecom house</p>
+								<p>Time: 2019-02-25 03:00:00</p>
+								<hr>
+								<p><a href="#" onclick="preventing()"><img src="./assets/like.png"></a><span id="prev">0</span>
+
+									<a href="#" onclick="preventing2()"><img src="./assets/unlike.png"></a><span id="preventing2">0</span>
+
+									<a href="#"><span><img src="./assets/comment.png"></span></a>
+								</p>
+							</li>
+						</ul>
+					</aside>
+				</div>
+			</div>
+		</section>	
+	
+	</body>
+	<footer>
+			<p>Questioner, copyright &copy; 2018</p>
+	</footer>
+</html>
