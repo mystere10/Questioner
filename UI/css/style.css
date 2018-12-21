@@ -294,3 +294,22 @@ TABLE */
 	border:1px solid #DADADA;
 	
 }
+
+/* User page */
+
+.main li{
+	list-style-type: none;
+}
+
+#postcomment{
+	display: none;
+}
+
+#meetup img{
+	border-radius: 50%;
+	width: 50%;
+}
+
+#meetup h1{
+	
+}
