@@ -337,3 +337,29 @@ TABLE */
 	width: 30%;
 	margin-top: 10px;
 }
+
+/* Media queries*/
+
+@media(max-width: 768px){
+	header #logo,
+	header nav,
+	header nav li,
+	#events .photo,
+	.aside #meetupk,
+	.events .main,
+	.aside #meetup{
+		float: none;
+		text-align: center;
+		width: 100%;
+	}
+
+	header{
+		padding-bottom: 20px;
+	}
+
+	.events .table{
+		display: block;
+		overflow: auto;
+		white-space: nowrap;
+	}
+}
