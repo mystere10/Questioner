@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Register</title>
+	<title>Reset</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
@@ -24,32 +24,15 @@
 		<section>
 			<div class="login">
 				<div class="container">
-					<h1>Register</h1>
+					<h1>Reset Password Form</h1>
 					<form>
-						<p>Fist Name</p>
-						<input type="text" name="fname">
-
-						<p>Last Name</p>
-						<input type="text" name="lname">
-
-						<p>Other Name</p>
-						<input type="text" name="othername">
-
 						<p>Email</p>
-						<input type="text" name="email">
+						<input type="text" name="email" placeholder="Enter your email">
 
 						<p>Phone Number</p>
-						<input type="text" name="phone">
+						<input type="text" name="phone" placeholder="Enter your phone number">
 
-						<p>Username</p>
-						<input type="text" name="username">
-
-						<p>Password</p>
-						<input type="text" name="password">
-
-						<input type="submit" name="submit" value="Signup">
-
-						<a href="login.html">Already have an accout?</a>
+						<input type="submit" onclick="resetemail()" name="submit" value="Reset">
 					</form>
 				</div>
 			</div>
@@ -60,3 +43,10 @@
 			<p>Questioner, copyright &copy; 2018</p>
 	</footer>
 </html>
+
+<script type="text/javascript">
+	
+	function resetemail(){
+		alert("Reset email successfully sent");
+	}
+</script>
