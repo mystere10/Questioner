@@ -1,0 +1,31 @@
+{
+  "name": "questioner",
+  "version": "1.0.0",
+  "description": "This project will allow a user to post a question in a meetup \u001b[D question with most votes is selected for the discussion",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d dist",
+    "test": "mocha --require babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mystere10/Questioner.git"
+  },
+  "author": "Nkunzi Innocent",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mystere10/Questioner/issues"
+  },
+  "homepage": "https://github.com/mystere10/Questioner#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3"
+  }
+}
