@@ -1,14 +1,18 @@
 import express from 'express';
 import morgan from 'morgan';
+import bodyParser from 'body-parser';
 import homepage from './routes/index';
+import meetups from './routes/meetup';
 import { pipeline } from 'stream';
 
 // Init app
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(morgan('dev'));
 app.use('/api', homepage);
+app.use('/api/v1/meetup', meetups);
 
 
 // Error handling
