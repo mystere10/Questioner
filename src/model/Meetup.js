@@ -24,6 +24,10 @@ class Meetup{
     getOneMeetup(id){
         return this.meetups.find(meet => meet.id === id);
     }
+
+    getAll(){
+        return this.meetups;
+      }
 }
 
 export default new Meetup();
