@@ -36,6 +36,21 @@ const Meetups = {
               message: 'Meetups successfully returned',
               meetups: meetup
           });
+      },
+
+      deleteOneMeetup(req, res){
+        const meetup = MeetupModel.getOneMeetup(req.params.id);
+        if(!meetup){
+            return res.status(404).json({
+                message: 'No meetup found'
+            });
+        }
+        const meet = MeetupModel.deleteMeetup(req.params.id);
+        return res.status(200).json({
+            message: 'Meetup deleted',
+            meetup: meet
+            
+        });
       }
 
 }
