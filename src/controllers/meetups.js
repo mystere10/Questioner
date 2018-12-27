@@ -23,6 +23,19 @@ const Meetups = {
         return res.status(200).json({
             meetup: oneMeetup
         });
+      },
+
+      getAllMeetup(req, res){
+          const meetup = MeetupModel.getAll();
+          if(meetup.length == 0){
+              return res.status(404).json({
+                  message: 'No meetup fund'
+              });
+          }
+          return res.status(200).json({
+              message: 'Meetups successfully returned',
+              meetups: meetup
+          });
       }
 
 }
