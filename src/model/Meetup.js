@@ -28,6 +28,13 @@ class Meetup{
     getAll(){
         return this.meetups;
       }
+
+    deleteMeetup(id){
+        const meetup = this.getOneMeetup(id);
+        const index = this.meetups.indexOf(meetup);
+        this.meetups.splice(index, 1);
+        return {};
+    }
 }
 
 export default new Meetup();
