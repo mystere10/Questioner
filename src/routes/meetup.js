@@ -5,5 +5,6 @@ import controllers from '../controllers/meetups';
 const router = express.Router();
 
 router.post('/', controllers.createMeetup);
+router.get('/:id', controllers.getOneMeetup);
 
 export default router;

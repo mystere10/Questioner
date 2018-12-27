@@ -20,6 +20,10 @@ class Meetup{
         this.meetups.push(newMeetup);
         return newMeetup;
     }
+
+    getOneMeetup(id){
+        return this.meetups.find(meet => meet.id === id);
+    }
 }
 
 export default new Meetup();
