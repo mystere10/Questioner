@@ -17,7 +17,7 @@ const Meetups = {
         const oneMeetup = MeetupModel.getOneMeetup(req.params.id);
         if (!oneMeetup) {
           return res.status(404).json({ 
-              message: 'reflection not found'
+              message: 'Meetup not found'
             });
         }
         return res.status(200).json({
