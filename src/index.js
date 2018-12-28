@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import homepage from './routes/index';
 import meetups from './routes/meetup';
+import users from './routes/users';
 import { pipeline } from 'stream';
 
 // Init app
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use('/api', homepage);
 app.use('/api/v1/meetup', meetups);
+app.use('/api/v1/users', users);
 
 
 // Error handling
