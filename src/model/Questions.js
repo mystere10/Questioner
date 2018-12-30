@@ -35,6 +35,18 @@ class Questions{
         
         return this.questions[index];
     }
+
+    downvoteQ(id, data){
+        const vote = this.findQuestion(id);
+        const index = this.questions.indexOf(vote);
+        let myvote = this.questions[index].votes = data['votes'] || vote.votes;
+        if(myvote > 0){
+            this.questions[index].votes = data['votes'] - 1 || vote.votes - 1;
+            return this.questions[index];
+        }else{
+            return this.questions[index];
+        }
+    }
 }
 
 export default new Questions();
