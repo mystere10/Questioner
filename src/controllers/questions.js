@@ -28,6 +28,21 @@ const Question = {
             message: 'Successful',
             question: like
         });
+    }, 
+
+    downvote(req, res){
+        const question = questionModel.findQuestion(req.params.id);
+        if(!question){
+            return res.status(404).json({
+                message: 'No question with the specified id'
+            });
+        }
+
+        const unlike = questionModel.downvoteQ(req.params.id, req.body);
+        return res.status(200).json({
+            message: 'Successful',
+            question: unlike
+        })
     }
 }
 
