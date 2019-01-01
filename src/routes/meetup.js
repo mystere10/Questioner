@@ -8,5 +8,6 @@ router.post('/', controllers.createMeetup);
 router.get('/:id', controllers.getOneMeetup);
 router.get('/', controllers.getAllMeetup);
 router.delete('/:id', controllers.deleteOneMeetup);
+router.post('/:id/rsvps', controllers.respondToMeetup);
 
 export default router;
