@@ -51,8 +51,21 @@ const Meetups = {
             meetup: meet
             
         });
-      }
+      },
 
+      respondToMeetup(req, res){
+          const meetup = MeetupModel.getOneMeetup(req.params.id);
+          if(!meetup){
+              return res.status(404).json({
+                  message: 'No meetup with the specified id'
+              });
+          }
+          const response = MeetupModel.RSVP(req.params.id, req.body);
+          res.status(201).json({
+              message: 'Response sent',
+              response: response
+          });
+      }
 }
 
 

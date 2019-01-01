@@ -35,6 +35,20 @@ class Meetup{
         this.meetups.splice(index, 1);
         return {};
     }
+
+    RSVP(id, data){
+        const meetup = this.getOneMeetup(id);
+        const index = this.meetups.indexOf(meetup);
+        let meetupId = this.meetups[index].id = data['id'] || meetup.id;
+        let meetuptopic = this.meetups[index].topic = data['topic'] || meetup.topic;
+        const newRSVP = {
+            meetup: meetupId,
+            topic: meetuptopic,
+            status: data.status
+        }
+        this.meetups.push(newRSVP);
+        return newRSVP;
+    }
 }
 
 export default new Meetup();
