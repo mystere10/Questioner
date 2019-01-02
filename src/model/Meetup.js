@@ -49,6 +49,11 @@ class Meetup{
         this.meetups.push(newRSVP);
         return newRSVP;
     }
+
+    upcomingMeetups(){
+        
+        return this.getAll();
+    } 
 }
 
 export default new Meetup();
