@@ -65,6 +65,19 @@ const Meetups = {
               message: 'Response sent',
               response: response
           });
+      },
+
+      upcoming(req, res){
+        const upcoming = MeetupModel.upcomingMeetups();
+        if(upcoming.length == 0 || upcoming == 'undefined'){
+            return res.status(404).json({
+                message: 'No upcoming meetup found'
+            });
+        }
+        return res.status(200).json({
+            message: 'list of upcomming meetups',
+            meetups: upcoming
+        });
       }
 }
 
