@@ -14,7 +14,7 @@ class Meetup{
             location: data.location,
             images: data.images,
             topic: data.topic,
-            happeningOn: moment.now(),
+            happeningOn: data.happeningOn,
             tags: data.tags
         };
         this.meetups.push(newMeetup);
