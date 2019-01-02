@@ -2,7 +2,7 @@ import MeetupModel from '../model/Meetup';
 
 const Meetups = {
     createMeetup(req, res){
-        if(!req.body.location && !req.body.topic && !req.body.images && !req.body.tags){
+        if(!req.body.location && !req.body.topic && !req.body.images && !req.body.tags && !req.body.happeningOn){
             return res.status(400).json({
                 message: 'Field required'
             })
