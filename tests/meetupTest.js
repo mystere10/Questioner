@@ -74,10 +74,10 @@ describe('Meetup endpoint test', () => {
         .send(srvp)
         .end((err, res) => {
             res.should.have.status(201);
-            // res.should.be.json;
-            // res.body.reponse.should.have.property('meetup');
-            // res.body.response.should.have.property('topic');
-            // res.body.response.should.have.property('status');
+            res.should.be.json;
+            res.body.response.should.have.property('meetup');
+            res.body.response.should.have.property('topic');
+            res.body.response.should.have.property('status');
             done();
         });
     });
