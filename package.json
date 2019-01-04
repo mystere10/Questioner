@@ -1,12 +1,13 @@
 {
   "name": "questioner",
   "version": "1.0.0",
-  "description": "This project will allow a user to post a question in a meetup \u001b[D question with most votes is selected for the discussion",
+  "description": "This project will allow a user to post a question in a meetup then a question with most votes is selected for the discussion",
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node",
     "build": "babel src -d dist",
-    "test": "mocha --require babel-register tests/*.js"
+    "test": "nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require babel-register tests/*.js --exit || true",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "nyc": "^13.1.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
