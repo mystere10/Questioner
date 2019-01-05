@@ -2,10 +2,10 @@
   "name": "questioner",
   "version": "1.0.0",
   "description": "This project will allow a user to post a question in a meetup then a question with most votes is selected for the discussion",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "nodemon src/index.js --exec babel-node",
-    "build": "babel src -d dist",
+    "start": "babel-node ./src/index.js",
+    "build": "babel src -d src/dist",
     "test": "nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require babel-register tests/*.js --exit || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
