@@ -4,8 +4,10 @@
   "description": "This project will allow a user to post a question in a meetup then a question with most votes is selected for the discussion",
   "main": "./src/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/index.js",
     "build": "babel src -d src/dist",
+    "server": "nodemon ./src/index.js --exec babel-node",
+    "start": "babel-node ./src/index.js",
+    "heroku-postbuild": "npm install",
     "test": "nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require babel-register tests/*.js --exit || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
