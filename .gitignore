@@ -4,6 +4,7 @@ coverage/
 /.env
 src/dist
 
+
 # Logs
 logs
 *.log
