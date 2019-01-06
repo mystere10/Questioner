@@ -2,7 +2,8 @@ node_modules/
 .nyc_output/
 coverage/
 /.env
-/src/dist/
+src/dist
+
 
 # Logs
 logs
