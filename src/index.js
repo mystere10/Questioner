@@ -5,7 +5,14 @@ import homepage from './routes/index';
 import meetups from './routes/meetup';
 import users from './routes/users';
 import questions from './routes/questions';
-import { pipeline } from 'stream';
+import connection from './db/connect';
+import dotenv from 'dotenv';
+import '@babel/polyfill';
+
+dotenv.config();
+
+// connection.connect()
+// .then(() => console.log('Postgress connected'));
 
 // Init app
 const app = express();
@@ -21,19 +28,19 @@ app.use('/api/v1/questions', questions);
 
 // Error handling
 app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status = 404;
-    next(error);
+  const error = new Error('Not found');
+  error.status = 404;
+  next(error);
 });
 
-app.use((error, req, res, next) => {
-    res.status(error.status || 500);
-    res.json({
-        error:{
-            message: error.message
-        }
-    });
-})
+app.use((error, req, res) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
+});
 
 // PORT ASSIGNATION
 const port = process.env.PORT || 5500;
