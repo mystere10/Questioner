@@ -26,6 +26,7 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
@@ -39,7 +40,14 @@
     "@babel/polyfill": "^7.2.5",
     "body-parser": "^1.18.3",
     "chai-http": "^4.2.0",
+<<<<<<< HEAD
     "dotenv": "^6.2.0",
+=======
+    "circular-json": "^0.5.9",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+>>>>>>> bg-reconfigure-eslint-163019281
     "express": "^4.16.4",
     "joi": "^14.3.1",
     "moment": "^2.23.0",
