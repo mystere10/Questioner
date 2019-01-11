@@ -37,17 +37,21 @@ const Meetups = {
     }
   },
 
-// //   // getOneMeetup(req, res) {
-// //   //   const oneMeetup = MeetupModel.getOneMeetup(req.params.id);
-// //   //   if (!oneMeetup) {
-// //   //     return res.status(404).json({
-// //   //       message: 'Meetup not found',
-// //   //     });
-// //   //   }
-// //   //   return res.status(200).json({
-// //   //     meetup: oneMeetup,
-// //   //   });
-// //   // },
+  getOneMeetup(req, res) {
+    const meetupId = req.params.id;
+    const oneMeetup = db(queries.getOneMeetup, [meetupId]);
+    if (!oneMeetup) {
+      return res.status(404).json({
+        message: 'Meetup not found',
+      });
+    } else {
+        oneMeetup.then((response) => {
+            res.status(200).send(response[0]);
+        }).catch((error) => {
+            res.status(403).send({message: 'An error has occured'});
+        });
+    }
+  },
 
   getAllMeetup(req, res) {
     const meetup = db(queries.getMeetup);

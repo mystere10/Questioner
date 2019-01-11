@@ -6,7 +6,6 @@ import homepage from './routes/index';
 import meetups from './routes/meetup';
 import users from './routes/users';
 import questions from './routes/questions';
-
 import '@babel/polyfill';
 
 dotenv.config();
@@ -21,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(morgan('dev'));
 app.use('/api', homepage);
-app.use('/api/v1/meetup', meetups);
+app.use('/api/v1/meetups', meetups);
 app.use('/api/v1/users', users);
 app.use('/api/v1/questions', questions);
 
