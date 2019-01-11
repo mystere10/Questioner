@@ -9,6 +9,6 @@ router.get('/:id', controllers.getOneMeetup);
 router.get('/', controllers.getAllMeetup);
 // router.delete('/:id', controllers.deleteOneMeetup);
 // router.post('/:id/rsvps', controllers.respondToMeetup);
-// router.get('/upcoming/meetups', controllers.upcoming);
+router.get('/meetups/upcoming', controllers.upcoming);
 
 export default router;
