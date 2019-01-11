@@ -11,7 +11,7 @@ const createMeetup = 'INSERT INTO meetup(location, images, topic, happeningon, t
 const createQuestion = 'INSERT INTO question(createdby, meetup, title, body, votes)VALUES($1,$2,$3,$4,$5) RETURNING * ';
 
 // Creating a RSVP
-const srvp = 'INSERT INTO rsvp(id, meetup, user, response)VALUES(id, meetup, user, response) RETURNING *';
+const srvp = 'INSERT INTO rsvp(meetup, user, response)VALUES($1, $2, $3) RETURNING * ';
 
 // GET meetup
 const getMeetup = 'SELECT * FROM meetup';
