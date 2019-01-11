@@ -35,7 +35,7 @@ const Meetups = {
         res.status(403).send({ message: 'Meetup not created' });
       });
     }
-  }
+  },
 
 // //   // getOneMeetup(req, res) {
 // //   //   const oneMeetup = MeetupModel.getOneMeetup(req.params.id);
@@ -49,13 +49,22 @@ const Meetups = {
 // //   //   });
 // //   // },
 
-// //   // getAllMeetup(req, res) {
-// //   //   const meetup = MeetupModel.getAll();
-// //   //   if (meetup.length === 0) {
-// //   //     return res.status(404).json({
-// //   //       message: 'No meetup fund',
-// //   //     });
-// //   //   }
+  getAllMeetup(req, res) {
+    const meetup = db(queries.getMeetup);
+    if (meetup.length === 0) {
+      return res.status(404).json({
+        message: 'No meetup fund',
+      });
+    } else {
+        meetup.then((response) => {
+            res.status(200).send(response);
+
+        }).catch((error) => {
+            res.status(403).send({ message: 'An error occured' });
+            console.log(error);
+        });
+    }
+}
 // //   //   return res.status(200).json({
 // //   //     message: 'Meetups successfully returned',
 // //   //     meetups: meetup,
