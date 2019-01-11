@@ -51,7 +51,7 @@ question(
     meetup INTEGER REFERENCES meetup(id),
     title VARCHAR(50) NOT NULL,
     body VARCHAR(128) NOT NULL,
-    votes INTEGER
+    votes INTEGER DEFAULT 0
 );`;
 
 const rsvp = `CREATE TABLE IF NOT EXISTS

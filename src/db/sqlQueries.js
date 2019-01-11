@@ -8,7 +8,7 @@ const registrations = 'INSERT INTO registrations(firstname, lastname, othername,
 const createMeetup = 'INSERT INTO meetup(location, images, topic, happeningon, tags)VALUES($1,$2,$3,$4,$5) RETURNING * ';
 
 // Creating a question
-const createQuestion = 'INSERT INTO question(id, createdOn, createdBy, meetup, title, body, votes)VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING * ';
+const createQuestion = 'INSERT INTO question(createdby, meetup, title, body, votes)VALUES($1,$2,$3,$4,$5) RETURNING * ';
 
 // Creating a RSVP
 const srvp = 'INSERT INTO rsvp(id, meetup, user, response)VALUES(id, meetup, user, response) RETURNING *';
