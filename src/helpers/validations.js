@@ -26,7 +26,20 @@ const meetupSchema = Joi.object().keys({
     tags: Joi.string().alphanum().min(3),
 });
 
+const questionSchema = Joi.object().keys({
+    createdBy: Joi.number().integer()
+    .required(),
+    meetup: Joi.number().integer()
+    .required(),
+    title: Joi.string().min(5).max(50)
+    .required(),
+    body: Joi.string().min(5).max(120)
+    .required(),
+    votes: Joi.number().integer(),
+});
+
 export default {
     userSchema,
-    meetupSchema
+    meetupSchema,
+    questionSchema
 };
