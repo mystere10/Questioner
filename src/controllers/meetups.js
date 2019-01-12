@@ -41,21 +41,23 @@ const Meetups = {
 
   getOneMeetup(req, res) {
     const meetupId = req.params.id;
-    const oneMeetup = db(queries.getOneMeetup, [meetupId]);
-    if (!oneMeetup) {
-      return res.status(404).json({
-        message: 'Meetup not found',
-      });
-    }
+    const status = 'ACTIVE';
+    const oneMeetup = db(queries.getOneMeetup, [meetupId, status]);
     oneMeetup.then((response) => {
-      res.status(200).send(response[0]);
-    }).catch((error) => {
-      res.status(403).send({ message: 'An error has occured', error });
+      if (response.length === 0 || response.length === 'undefined') {
+        res.status(404).send({ message: 'No meetup with the specified id' });
+      }
+      oneMeetup.then((response) => {
+        res.status(200).send(response[0]);
+      }).catch((error) => {
+        res.status(403).send({ message: 'An error has occured', error });
+      });
     });
   },
 
   getAllMeetup(req, res) {
-    const meetup = db(queries.getMeetup);
+    const status = 'ACTIVE';
+    const meetup = db(queries.getMeetup, [status]);
     if (meetup.length === 0) {
       return res.status(404).json({
         message: 'No meetup fund',
@@ -91,19 +93,48 @@ const Meetups = {
     });
   },
 
-// //   // respondToMeetup(req, res) {
-// //   //   const meetup = MeetupModel.getOneMeetup(req.params.id);
-// //   //   if (!meetup) {
-// //   //     return res.status(404).json({
-// //   //       message: 'No meetup with the specified id',
-// //   //     });
-// //   //   }
-// //   //   const response = MeetupModel.RSVP(req.params.id, req.body);
-// //   //   return res.status(201).json({
-// //   //     message: 'Response sent',
-// //   //     response,
-// //   //   });
-// //   // },
+  respondToMeetup(req, res) {
+    const meetupId = req.params.id;
+    const meetupStatus = 'ACTIVE';
+    const {
+      user, status,
+    } = req.body;
+
+    const rvspSchema = Joi.object().keys({
+      user: Joi.number().integer()
+        .required(),
+      status: Joi.string().alphanum().min(2).max(5)
+        .required(),
+    });
+    const { error, value} = Joi.validate({ user, status }, rvspSchema);
+    if (error) {
+      res.status(400).send({ error: error.details[0].message });
+    }
+    const findMeetup = db(queries.getOneMeetup, [meetupId, meetupStatus]);
+    findMeetup.then((response) => {
+      if (response.length === 0 || response === 'undefined') {
+        res.status(404).send({ message: 'Meetup not found' });
+      }
+    });
+
+    const findUser = db(queries.getOneUser, [user]);
+    findUser.then((response) => {
+      if (response.length === 0 || response === 'undefined') {
+        res.status(404).send({ message: 'User not found' });
+      } else {
+        const rsvp = db(queries.rsvp, [meetupId, user, status]);
+        rsvp.then((response) => {
+          res.status(201).json({
+            message: 'Question submitted',
+          });
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  },
 
   upcoming(req, res) {
     const currentDate = new Date();

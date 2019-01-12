@@ -11,13 +11,13 @@ const createMeetup = 'INSERT INTO meetup(location, images, topic, happeningon, t
 const createQuestion = 'INSERT INTO question(createdby, meetup, title, body, votes)VALUES($1,$2,$3,$4,$5) RETURNING * ';
 
 // Creating a RSVP
-const srvp = 'INSERT INTO rsvp(meetup, user, response)VALUES($1, $2, $3) RETURNING * ';
+const rsvp = 'INSERT INTO rsvp(meetup, userid, response)VALUES($1,$2,$3) RETURNING * ';
 
 // GET meetup
-const getMeetup = 'SELECT * FROM meetup';
+const getMeetup = 'SELECT * FROM meetup WHERE status = $1';
 
 // GET onemeetup
-const getOneMeetup = 'SELECT * FROM meetup WHERE id = $1';
+const getOneMeetup = 'SELECT * FROM meetup WHERE id = $1 AND status = $2';
 
 // GET upcoming meetup
 const upcoming = 'SELECT * FROM meetup WHERE happeningon > $1::DATE';
@@ -31,15 +31,19 @@ const downvote = 'UPDATE question SET votes = $1 WHERE id = $1';
 // Delete a meetup (updating the status)
 const deletemeetup = 'UPDATE meetup SET status = $1 WHERE id = $2 RETURNING * ';
 
+// Select users
+const getOneUser = 'SELECT * FROM registrations WHERE id = $1';
+
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
 sqlQuery.createQuestion = createQuestion;
-sqlQuery.srvp = srvp;
+sqlQuery.rsvp = rsvp;
 sqlQuery.getMeetup = getMeetup;
 sqlQuery.getOneMeetup = getOneMeetup;
 sqlQuery.upcoming = upcoming;
 sqlQuery.upvote = upvote;
 sqlQuery.downvote = downvote;
 sqlQuery.deletemeetup = deletemeetup;
+sqlQuery.getOneUser = getOneUser;
 
 export default sqlQuery;
