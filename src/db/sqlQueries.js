@@ -28,6 +28,9 @@ const upvote = 'UPDATE question SET votes = $1 WHERE id = $1';
 // Downvote
 const downvote = 'UPDATE question SET votes = $1 WHERE id = $1';
 
+// Delete a meetup (updating the status)
+const deletemeetup = 'UPDATE meetup SET status = $1 WHERE id = $2 RETURNING * ';
+
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
 sqlQuery.createQuestion = createQuestion;
@@ -37,5 +40,6 @@ sqlQuery.getOneMeetup = getOneMeetup;
 sqlQuery.upcoming = upcoming;
 sqlQuery.upvote = upvote;
 sqlQuery.downvote = downvote;
+sqlQuery.deletemeetup = deletemeetup;
 
 export default sqlQuery;

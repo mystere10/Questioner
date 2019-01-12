@@ -1,11 +1,13 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-return-await */
+import '@babel/polyfill';
+
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
-import '@babel/polyfill';
-import sqlQueries from './sqlQueries'
+
 
 dotenv.config();
-
-const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -18,8 +20,7 @@ const pool = new Pool({
 const connect = async () => await pool.connect();
 
 const defaultDatabases = async () => {
-
-const signup = `CREATE TABLE IF NOT EXISTS
+  const signup = `CREATE TABLE IF NOT EXISTS
 registrations(
     id SERIAL PRIMARY KEY,
     firstname VARCHAR(50) NOT NULL,
@@ -32,7 +33,7 @@ registrations(
     isAdmin BOOLEAN NOT NULL default FALSE
 );`;
 
-const meetup = `CREATE TABLE IF NOT EXISTS
+  const meetup = `CREATE TABLE IF NOT EXISTS
 meetup(
     id SERIAL PRIMARY KEY,
     createdon TIMESTAMP default current_timestamp,
@@ -40,10 +41,11 @@ meetup(
     images VARCHAR(128),
     topic VARCHAR(128) NOT NULL,
     happeningon TIMESTAMP NOT NULL UNIQUE,
-    tags VARCHAR(128)
+    tags VARCHAR(128),
+    status VARCHAR(15) DEFAULT 'ACTIVE'
 );`;
 
-const question = `CREATE TABLE IF NOT EXISTS
+  const question = `CREATE TABLE IF NOT EXISTS
 question(
     id SERIAL PRIMARY KEY,
     createdon TIMESTAMP default current_timestamp,
@@ -54,7 +56,7 @@ question(
     votes INTEGER DEFAULT 0
 );`;
 
-const rsvp = `CREATE TABLE IF NOT EXISTS
+  const rsvp = `CREATE TABLE IF NOT EXISTS
 rsvp(
     id SERIAL PRIMARY KEY,
     meetup INTEGER REFERENCES meetup(id),
@@ -74,25 +76,22 @@ const dropTables = async () => {
 
   const connection = await connect();
   await connection.query(dropAlltables);
- 
-}
+};
 
 defaultDatabases();
 
 // export default connect;
 const db = async (sql, data = []) => {
-    const connection = await connect();
-    try {
-      // wait for the query using await
-      const result = await connection.query(sql, data);
-      return result.rows;
-    } catch (error) {
-      // Error handling
-      console.log(error.message);
-    } finally {
-      // close the pool or the databasee
-      connection.release();
-    }
-  };
-  
-  export default db;
+  const connection = await connect();
+  try {
+    const result = await connection.query(sql, data);
+    return result.rows;
+  } catch (error) {
+    console.log(error.message);
+  } finally {
+    // close the pool or the databasee
+    connection.release();
+  }
+};
+
+export default db;

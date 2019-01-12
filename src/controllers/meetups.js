@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable consistent-return */
 /* eslint-disable no-shadow */
 /* eslint-disable max-len */
@@ -68,19 +69,27 @@ const Meetups = {
     });
   },
 
-// //   // deleteOneMeetup(req, res) {
-// //   //   const meetup = MeetupModel.getOneMeetup(req.params.id);
-// //   //   if (!meetup) {
-// //   //     return res.status(404).json({
-// //   //       message: 'No meetup found',
-// //   //     });
-// //   //   }
-// //   //   const meet = MeetupModel.deleteMeetup(req.params.id);
-// //   //   return res.status(200).json({
-// //   //     message: 'Meetup deleted',
-// //   //     meetup: meet,
-// //   //   });
-// //   // },
+  deleteOneMeetup(req, res) {
+    const meetupId = req.params.id;
+    const status = 'NOT ACTIVE';
+    const findMeetup = db(queries.getOneMeetup, [meetupId]);
+    findMeetup.then((response) => {
+      if (response.length === 0 || response.length === 'undefined') {
+        res.status(404).send({ message: 'No meetup with the specified id' });
+      }
+      const deleteMeetup = db(queries.deletemeetup, [status, meetupId]);
+      deleteMeetup.then((response) => {
+        if (response) {
+          res.status(200).send({ message: 'Meetup deleted' });
+        } else {
+          res.status(400).send({ message: 'Meetup not deleted' });
+        }
+      }).catch((error) => {
+        res.status(403).send({ message: 'An error has occured' });
+        console.log(error);
+      });
+    });
+  },
 
 // //   // respondToMeetup(req, res) {
 // //   //   const meetup = MeetupModel.getOneMeetup(req.params.id);
