@@ -20,7 +20,7 @@ const getMeetup = 'SELECT * FROM meetup';
 const getOneMeetup = 'SELECT * FROM meetup WHERE id = $1';
 
 // GET upcoming meetup
-const upcoming = 'SELECT * FROM meetup WHERE happeingOn = $1';
+const upcoming = 'SELECT * FROM meetup WHERE happeningon > $1::DATE';
 
 // Upvote
 const upvote = 'UPDATE question SET votes = $1 WHERE id = $1';
@@ -33,7 +33,7 @@ sqlQuery.createMeetup = createMeetup;
 sqlQuery.createQuestion = createQuestion;
 sqlQuery.srvp = srvp;
 sqlQuery.getMeetup = getMeetup;
-sqlQuery.getOneMeetup =getOneMeetup;
+sqlQuery.getOneMeetup = getOneMeetup;
 sqlQuery.upcoming = upcoming;
 sqlQuery.upvote = upvote;
 sqlQuery.downvote = downvote;
