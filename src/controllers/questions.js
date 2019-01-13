@@ -38,20 +38,22 @@ const Questions = {
     }
   },
 
-  // upvote(req, res) {
-  //   const question = questionModel.findQuestion(req.params.id);
-  //   if (!question) {
-  //     return res.status(404).json({
-  //       message: 'No question with the specified id',
-  //     });
-  //   }
-
-  //   const like = questionModel.upvoteQ(req.params.id, req.body);
-  //   return res.status(200).json({
-  //     message: 'Successful',
-  //     question: like,
-  //   });
-  // },
+  upvote(req, res) {
+    const questionId = req.params.id;
+    const question = db(queries.getOneQuestion, [questionId]);
+    question.then((response) => {
+      if (response.length === 0) {
+        res.status(404).send({ message: 'No question found with the specified id' });
+      } else {
+        res.status(200).send(response[0]);
+        const upvote = db(queries.upvote, [questionId]);
+        upvote.then((response) => {
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+    });
+  },
 
   downvote(req, res) {
     const questionId = req.params.id;
