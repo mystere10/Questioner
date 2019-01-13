@@ -23,7 +23,7 @@ const getOneMeetup = 'SELECT * FROM meetup WHERE id = $1 AND status = $2';
 const upcoming = 'SELECT * FROM meetup WHERE happeningon > $1::DATE';
 
 // Upvote
-const upvote = 'UPDATE question SET votes = $1 WHERE id = $2';
+const upvote = 'UPDATE question SET votes = votes + 1 WHERE id = $1';
 
 // Downvote
 const downvote = 'UPDATE question SET votes = votes - 1 WHERE id = $1 and votes > 0';
