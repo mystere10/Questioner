@@ -23,16 +23,19 @@ const getOneMeetup = 'SELECT * FROM meetup WHERE id = $1 AND status = $2';
 const upcoming = 'SELECT * FROM meetup WHERE happeningon > $1::DATE';
 
 // Upvote
-const upvote = 'UPDATE question SET votes = $1 WHERE id = $1';
+const upvote = 'UPDATE question SET votes = $1 WHERE id = $2';
 
 // Downvote
-const downvote = 'UPDATE question SET votes = $1 WHERE id = $1';
+const downvote = 'UPDATE question SET votes = votes - 1 WHERE id = $1 and votes > 0';
 
 // Delete a meetup (updating the status)
 const deletemeetup = 'UPDATE meetup SET status = $1 WHERE id = $2 RETURNING * ';
 
 // Select users
 const getOneUser = 'SELECT * FROM registrations WHERE id = $1';
+
+// Select question id
+const getOneQuestion = 'SELECT * FROM question WHERE id = $1';
 
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
@@ -45,5 +48,6 @@ sqlQuery.upvote = upvote;
 sqlQuery.downvote = downvote;
 sqlQuery.deletemeetup = deletemeetup;
 sqlQuery.getOneUser = getOneUser;
+sqlQuery.getOneQuestion = getOneQuestion;
 
 export default sqlQuery;
