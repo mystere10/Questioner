@@ -2,11 +2,7 @@ node_modules/
 .nyc_output/
 coverage/
 /.env
-<<<<<<< HEAD
 src/dist
-=======
-/src/dist/
->>>>>>> ch-editing-README-and-adding-badges-162997980
 
 # Logs
 logs
