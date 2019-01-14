@@ -5,7 +5,7 @@ import controllers from '../controllers/questions';
 const router = express.Router();
 
 router.post('/', controllers.createQuestion);
-router.patch('/:id', controllers.upvote);
-router.patch('/downvote/:id', controllers.downvote);
+router.patch('/:id/upvote', controllers.upvote);
+router.patch('/:id/downvote', controllers.downvote);
 
 export default router;
