@@ -1,3 +1,7 @@
+html{
+	height: 100%;
+	margin: 0;
+}
 
 body{
 	font-family: Arial, Hervetica, sans-serif;
@@ -124,6 +128,7 @@ header a:hover{
 	margin-top: 20px;
 	box-sizing: border-box;
 	padding: 70px 30px;
+	margin-bottom: 20px;
 }
 
 .head{
@@ -254,7 +259,7 @@ TABLE */
 	background: #e6e6e6e6;
 }
 
-.main input, textarea{
+.main input, textarea, select{
 	width: 50%;
 	padding: 5px;
 }
@@ -272,19 +277,25 @@ TABLE */
 
 .main input[type="submit"]{
 	border: none;
-	background: #34495e;
+	background: #f39c12;
 	color: #ffffff;
 	border-radius: 10px;
 }
 
 .main input[type="submit"]:hover{
-	background: #079992;
+	background: #c23616;
 	cursor: pointer;
 }
 
 .main input[type="text"], input[type="date"], textarea{
 	border:1px solid #DADADA;
-	
+	padding: 10px 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.main select{
+	border:1px solid #DADADA;
+	padding: 10px 20px;
 }
 
 /* User page */
@@ -366,11 +377,12 @@ TABLE */
 
 footer{
 	position: relative;
+	left: 0;
 	padding: 20px;
 	bottom: 0;
 	color: #ffffff;
 	background-color: #34495e;
 	text-align: center;
-	margin-top: 10%;
-	min-height: 70px;
+	height: 50px; 
+	margin-top: 20px;
 }

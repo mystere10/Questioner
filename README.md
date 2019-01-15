@@ -16,16 +16,16 @@ into the system so that they can log in an be presented with all system features
 
 # API ENDPOINTS
 ## Meetups endpoints
-`POST /meetups`: This will post a meetup
-`GET /meetups/<meetup-id>`: Will get a stored meetups with a specific id
-`GET /meetups/`: Will get all stored meetups 
-`GET /meetups/upcoming`: Will fetch all upcoming meetups
-`POST /meetups/<meetup-id>/rsvps`: Will respond to a meetup
+`POST /meetups`: This will post a meetup.
+`GET /meetups/<meetup-id>`: Will get a stored meetups with a specific id.
+`GET /meetups/`: Will get all stored meetups.
+`GET /meetups/upcoming`: Will fetch all upcoming meetups.
+`POST /meetups/<meetup-id>/rsvps`: Will respond to a meetup.
 
 ## Question endpoints
-`POST /questions`: Post a question (create a question)
-`PATCH /questions/<question-id>/upvote`: Will upvote a question
-`PATCH /questions/<question-id>/downvote`: Will downvote a question
+`POST /questions`: Post a question (create a question).
+`PATCH /questions/<question-id>/upvote`: Will upvote a question.
+`PATCH /questions/<question-id>/downvote`: Will downvote a question.
 
 
 
