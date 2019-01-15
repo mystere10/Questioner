@@ -64,20 +64,33 @@
 			<div class="events">
 				<div class="container">
 					<div class="main">
-						<li>
+						<form>
+							<p>Select a meetup</p>
+							<select name="meetuplist">
+								<option value="#">Education</option>
+								<option value="#">Sport</option>
+								<option value="#">Malnutrition</option>
+								<option value="#">Hygiene</option>
+							</select>
+
+							<p>Quetion</p>
+							<textarea cols="10" rows="10">Write your question...</textarea>
+							<input type="submit" name="submit" value="Post">
+						</form>
+					</div>
+
+					<aside class="aside">
+						<ul id="meetupk">
+							<li>
 								<h3>Eradicating drugs</h3>
 								<p>Location: Kigali telecom house</p>
 								<p>Time: 2019-01-19 03:00:00</p>
-								
+								<hr>
 								<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
 
 									<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
 
-									<a href="#" id="addcomment"><span><img src="./assets/comment.png"></span></a>
-									<div id="postcomment">
-										<textarea name="comment" id="comment"></textarea>
-										<input type="submit" name="submit" value="Post">
-									</div>
+									<a href="#"><span><img src="./assets/comment.png"></span></a>
 								</p>
 							</li>
 
@@ -85,7 +98,7 @@
 								<h3>Preventing force marriage</h3>
 								<p>Location: Kigali telecom house</p>
 								<p>Time: 2019-02-25 03:00:00</p>
-								
+								<hr>
 								<p><a href="#" onclick="preventing()"><img src="./assets/like.png"></a><span id="prev">0</span>
 
 									<a href="#" onclick="preventing2()"><img src="./assets/unlike.png"></a><span id="preventing2">0</span>
@@ -94,15 +107,6 @@
 								</p>
 							</li>
 						</ul>
-					</div>
-
-					<aside class="aside">
-						<div id="meetup">
-							<a href="profile.html"><img src="./assets/head.png"></a>
-							<h1>Nkunzi Innocent</h1>
-
-						</div> 
-							
 					</aside>
 				</div>
 			</div>
