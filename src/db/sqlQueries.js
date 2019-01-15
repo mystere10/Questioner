@@ -2,7 +2,7 @@
 const sqlQuery = {};
 
 // Registering a new user
-const registrations = 'INSERT INTO registrations(firstname, lastname, othername, email, phonenumber, username)VALUES($1,$2,$3,$4,$5,$6) RETURNING * ';
+const registrations = 'INSERT INTO registrations(firstname, lastname, othername, email, phonenumber, username, password)VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING * ';
 
 // Creating a meetup
 const createMeetup = 'INSERT INTO meetup(location, images, topic, happeningon, tags)VALUES($1,$2,$3,$4,$5) RETURNING * ';
