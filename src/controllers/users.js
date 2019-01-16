@@ -26,11 +26,14 @@ const Users = {
         const {
           firstname, lastname, othername, email, phoneNumber, username,
         } = response[0];
-        res.status(201).json({
-          message: 'User sucessufully registered',
-          response: {
-            firstname, lastname, othername, email, phoneNumber, username,
-          },
+        jwt.sign({ response: response[0] }, 'secretkey', (err, token) => {
+          res.status(201).json({
+            token,
+            message: 'User sucessufully registered',
+            response: {
+              firstname, lastname, othername, email, phoneNumber, username,
+            },
+          });
         });
       }).catch((error) => {
         res.status(403).send({ message: 'Not registered' });
