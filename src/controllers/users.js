@@ -1,21 +1,26 @@
+import Joi from 'joi';
 import userModel from '../model/User';
+import validations from '../helpers/validations';
 
 const Users = {
-    register(req, res){
-        if(!req.body.firstname && !req.body.lastname && !req.body.othername && !req.body.email && !req.body.phoneNumber && !req.body.username && !req.body.isAdmin){
-            return res.status(404).json({
-                message: 'Field required'
-            });
-        }
+  register(req, res) {
+    const {
+      firstname, lastname, othername, email, phoneNumber, username, password,
+    } = req.body;
 
-        const user = userModel.createUser(req.body);
-        return res.status(201).json({
-            message: 'Thank you for registering',
-            user: user
-        });
-    },
-
-    
-}
+    const { error } = Joi.validate({
+      firstname, lastname, othername, email, phoneNumber, username, password,
+    }, validations.userSchema);
+    if (error) {
+      res.status(400).json({ error: error.details[0].message });
+    } else {
+      const user = userModel.createUser(req.body);
+      return res.status(201).json({
+        message: 'Thank you for registering',
+        user,
+      });
+    }
+  },
+};
 
 export default Users;
