@@ -40,8 +40,16 @@ const questionSchema = Joi.object().keys({
   votes: Joi.number().integer(),
 });
 
+const loginSchema = Joi.object().keys({
+  username: Joi.string().alphanum().min(3).max(50)
+    .required(),
+  password: Joi.string().alphanum().min(3).max(50)
+    .required(),
+});
+
 export default {
   userSchema,
   meetupSchema,
   questionSchema,
+  loginSchema,
 };
