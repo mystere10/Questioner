@@ -37,6 +37,9 @@ const getOneUser = 'SELECT * FROM registrations WHERE id = $1';
 // Select question id
 const getOneQuestion = 'SELECT * FROM question WHERE id = $1';
 
+// Login
+const login = 'SELECT * FROM registrations WHERE username = $1 and password = $2';
+
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
 sqlQuery.createQuestion = createQuestion;
@@ -49,5 +52,6 @@ sqlQuery.downvote = downvote;
 sqlQuery.deletemeetup = deletemeetup;
 sqlQuery.getOneUser = getOneUser;
 sqlQuery.getOneQuestion = getOneQuestion;
+sqlQuery.login = login;
 
 export default sqlQuery;
