@@ -29,6 +29,7 @@ registrations(
     email VARCHAR(50) UNIQUE NOT NULL,
     phonenumber VARCHAR(10) UNIQUE NOT NULL,
     username VARCHAR(15) NOT NULL,
+    password VARCHAR(50) NOT NULL,
     registered TIMESTAMP default current_timestamp,
     isAdmin BOOLEAN NOT NULL default FALSE
 );`;

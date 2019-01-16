@@ -6,12 +6,8 @@ import homepage from './routes/index';
 import meetups from './routes/meetup';
 import users from './routes/users';
 import questions from './routes/questions';
-import '@babel/polyfill';
 
 dotenv.config();
-
-// connection.connect()
-// .then(() => console.log('Postgress connected'));
 
 // Init app
 const app = express();
@@ -32,7 +28,7 @@ app.use((req, res, next) => {
   next(error);
 });
 
-app.use((error, req, res) => {
+app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: {
