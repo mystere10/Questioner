@@ -52,6 +52,22 @@ const Question = {
       question: unlike,
     });
   },
+
+  allQuestions(req, res) {
+    const allquestions = questionModel.getAllQuestions();
+    if (allquestions.length === 0) {
+      res.status(404).json({
+        status: '404',
+        message: 'Questions not found',
+      });
+    } else {
+      res.status(200).json({
+        status: '200',
+        questions: allquestions,
+      });
+    }
+  },
+
 };
 
 export default Question;

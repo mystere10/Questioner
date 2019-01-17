@@ -16,8 +16,24 @@ const Users = {
     } else {
       const user = userModel.createUser(req.body);
       return res.status(201).json({
+        status: '201',
         message: 'Thank you for registering',
         user,
+      });
+    }
+  },
+
+  getUsers(req, res) {
+    const allusers = userModel.gerUsers();
+    if (allusers.length === 0) {
+      res.status(404).json({
+        status: '404',
+        message: 'No user Found',
+      });
+    } else {
+      res.status(200).json({
+        status: '200',
+        users: allusers,
       });
     }
   },
