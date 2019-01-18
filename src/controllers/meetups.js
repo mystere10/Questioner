@@ -89,8 +89,16 @@ const Meetups = {
       });
     }
     const {
-      status,
+      status, user,
     } = req.body;
+
+    const findUser = userModel.getOneUser(user);
+    if (!findUser) {
+      return res.status(404).json({
+        status: '404',
+        message: 'User not found',
+      });
+    }
 
     if (status !== 'yes' && status !== 'no' && status !== 'maybe') {
       return res.status(400).json({
@@ -149,7 +157,7 @@ const Meetups = {
     if (error) {
       res.status(400).json({ error: error.details[0].message });
     } else {
-      const question = questionModel.createQ(req.body);
+      const question = questionModel.createQ(req.params.id, req.body);
       return res.status(201).json({
         status: '201',
         message: 'Thank you for posting your question',

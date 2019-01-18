@@ -81,6 +81,7 @@ class Meetup {
     const newRSVP = {
       meetup: meetupId,
       topic: meetuptopic,
+      user: data.user,
       status: data.status,
     };
     this.rsvp.push(newRSVP);
