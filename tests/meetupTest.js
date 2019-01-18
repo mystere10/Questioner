@@ -78,6 +78,7 @@ describe('Meetup endpoint test', () => {
       .end((err, res) => {
         res.should.have.status(201);
         res.should.be.json;
+        res.body.should.be.a('object');
         res.body.response.should.have.property('meetup');
         res.body.response.should.have.property('topic');
         res.body.response.should.have.property('status');

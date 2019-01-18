@@ -18,7 +18,7 @@ class Questions {
         title: 'Health',
         body: 'Health is',
         upvote: 0,
-        downvote: 0,
+        downvote: 5,
       },
     ];
   }

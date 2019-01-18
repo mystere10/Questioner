@@ -24,10 +24,8 @@ describe('user endpoint test', () => {
       .post('/api/v1/users')
       .send(newUser)
       .end((err, res) => {
-        console.log(res.body);
-        err.should.be.null();
         res.should.have.status(201);
-        res.should.be.json();
+        res.should.be.json;
         res.body.should.be.a('object');
         res.body.should.have.property('user');
         res.body.user.should.have.property('id');
