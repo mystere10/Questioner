@@ -23,12 +23,12 @@ class Questions {
     ];
   }
 
-  createQ(data) {
+  createQ(id, data) {
     const newQuestion = {
       id: uuid(),
       createdOn: moment.now(),
       createdBy: data.createdBy,
-      meetup: data.meetup,
+      meetup: id,
       title: data.title,
       body: data.body,
       upvote: 0,
@@ -53,16 +53,13 @@ class Questions {
   downvoteQ(id, data) {
     const downvote = this.findQuestion(id);
     const index = this.questions.indexOf(downvote);
-    const myvote = this.questions[index].downvotes;
-    if (myvote > 0) {
-      this.questions[index].downvote = data.downvote - 1 || downvote.downvote - 1;
-      return this.questions[index];
-    }
+    this.questions[index].downvote = data.downvote + 1 || downvote.downvote + 1;
+
     return this.questions[index];
   }
 
-  getAllQuestions() {
-    return this.questions;
+  getAllQuestions(meetup) {
+    return this.questions.filter(meet => meet.meetup === meetup);
   }
 }
 

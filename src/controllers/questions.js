@@ -52,14 +52,15 @@ const Question = {
 
     const unlike = questionModel.downvoteQ(req.params.id, req.body);
     return res.status(200).json({
+      status: '200',
       message: 'Successful',
       question: unlike,
     });
   },
 
   allQuestions(req, res) {
-    const allquestions = questionModel.getAllQuestions();
-    if (allquestions.length === 0) {
+    const allquestions = questionModel.getAllQuestions(req.params.meetupid);
+    if (!allquestions) {
       res.status(404).json({
         status: '404',
         message: 'Questions not found',
