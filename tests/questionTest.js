@@ -11,52 +11,61 @@ describe('Question tests', () => {
   let id;
   it('should create a question', (done) => {
     const newQuestion = {
-      createdBy: 'f98ef240-0aa4-11e9-9315-0fcfc3931fe8',
-      meetup: '356083b0-0aa5-11e9-9315-0fcfc3931fe8',
-      title: 'EDUCATION',
-      body: 'The quality of education...',
-      votes: 4,
+      id: 'e1b1e200-19e4-11e9-938d-5d7455c4fa15',
+      createdBy: 'e1b1e200-19e4-11e9-938d-5d7455f4fa14',
+      title: 'Health',
+      body: 'Health is',
+      upvote: 0,
+      downvote: 4,
     };
     chai.request(index)
-      .post('/api/v1/questions/')
+      .post('/api/v1/meetups/e1b1e200-19e4-11e9-938d-5d7455b3fa14/questions')
       .send(newQuestion)
       .end((err, res) => {
+        // console.log(res.body);
+        err.should.be.null();
         res.should.have.status(201);
-        res.should.be.json;
         res.body.should.be.a('object');
+        res.body.should.have.property('question');
+        res.body.question.should.have.property('id');
         res.body.question.should.have.property('createdBy');
-        res.body.question.should.have.property('meetup');
         res.body.question.should.have.property('title');
         res.body.question.should.have.property('body');
+        res.body.question.should.have.property('upvote').eql(0);
+        res.body.question.should.have.property('downvote').eql(4);
         id = res.body.question.id;
         done();
       });
   });
 
+
   it('should upvote a question', (done) => {
     chai.request(index)
-      .patch(`/api/v1/questions/${id}/upvote`)
+      .patch('/api/v1/questions/e1b1e200-19e4-11e9-938d-5d7455c4fa14/upvote')
       .end((err, res) => {
         res.should.have.status(200);
-        res.should.be.json;
+        res.body.question.should.have.property('id');
+        res.body.should.have.property('question');
         res.body.question.should.have.property('createdBy');
-        res.body.question.should.have.property('meetup');
+        res.body.question.should.have.property('title');
         res.body.question.should.have.property('body');
-        res.body.question.should.have.property('votes').eql(5);
+        res.body.question.should.have.property('upvote').eql(1);
+        res.body.question.should.have.property('downvote').eql(4);
         done();
       });
   });
 
   it('should downvote a question', (done) => {
     chai.request(index)
-      .patch(`/api/v1/questions/${id}/downvote`)
+      .patch('/api/v1/questions/e1b1e200-19e4-11e9-938d-5d7455c4fa14/downvote')
       .end((err, res) => {
         res.should.have.status(200);
-        res.should.be.json;
+        res.body.question.should.have.property('id');
         res.body.question.should.have.property('createdBy');
-        res.body.question.should.have.property('meetup');
+        res.body.question.should.have.property('title');
         res.body.question.should.have.property('body');
-        res.body.question.should.have.property('votes').eql(4);
+        res.body.question.should.have.property('upvote').eql(0);
+        res.body.question.should.have.property('downvote').eql(3);
         done();
       });
   });

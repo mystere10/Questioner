@@ -17,14 +17,17 @@ describe('user endpoint test', () => {
       email: 'gege@gmail.com',
       phoneNumber: '0724343444',
       username: 'gege',
+      password: 'gege123',
       isAdmin: 1,
     };
     chai.request(index)
       .post('/api/v1/users')
       .send(newUser)
       .end((err, res) => {
+        console.log(res.body);
+        err.should.be.null();
         res.should.have.status(201);
-        res.should.be.json;
+        res.should.be.json();
         res.body.should.be.a('object');
         res.body.should.have.property('user');
         res.body.user.should.have.property('id');
@@ -33,8 +36,8 @@ describe('user endpoint test', () => {
         res.body.user.should.have.property('othername');
         res.body.user.should.have.property('email');
         res.body.user.should.have.property('phoneNumber');
+        res.body.user.should.have.property('username');
         res.body.user.should.have.property('registered');
-        res.body.user.should.have.property('isAdmin');
         id = res.body.user.id;
         done();
       });
