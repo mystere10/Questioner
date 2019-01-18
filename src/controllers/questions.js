@@ -17,6 +17,7 @@ const Question = {
     } else {
       const question = questionModel.createQ(req.body);
       return res.status(201).json({
+        status: '201',
         message: 'Thank you for posting your question',
         question,
       });
@@ -27,12 +28,14 @@ const Question = {
     const question = questionModel.findQuestion(req.params.id);
     if (!question) {
       return res.status(404).json({
+        status: '404',
         message: 'No question with the specified id',
       });
     }
 
     const like = questionModel.upvoteQ(req.params.id, req.body);
     return res.status(200).json({
+      status: '200',
       message: 'Successful',
       question: like,
     });
@@ -42,6 +45,7 @@ const Question = {
     const question = questionModel.findQuestion(req.params.id);
     if (!question) {
       return res.status(404).json({
+        status: '404',
         message: 'No question with the specified id',
       });
     }
