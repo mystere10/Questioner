@@ -1,3 +1,8 @@
+html{
+	height: 100%;
+	margin: 0;
+}
+
 body{
 	font-family: Arial, Hervetica, sans-serif;
 	font-size: 15px;
@@ -5,6 +10,7 @@ body{
 	margin: 0;
 	padding: 0;
 	background-color: #f4f4f4;
+	min-height: 100%;
 }
 
 .container{
@@ -16,7 +22,7 @@ body{
 header{
 	background-color: #f39c12;
 	color: #34495e;
-	padding-top: 30px;
+	padding-top: 10px;
 	min-height: 70px;
 	border-bottom: #34495e 3px solid;
 }
@@ -40,11 +46,11 @@ header li{
 }
 
 header #logo-img{
-	height: 100px;
-	width: 100px;
+	height: 50px;
+	width: 50px;
 	margin: 0;
 	margin-bottom: 10px;
-	margin-top: : 10px;
+	margin-top: 10px;
 }
 
 header #logo{
@@ -53,7 +59,7 @@ header #logo{
 
 header nav{
 	float: right;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 header .current a{
@@ -122,6 +128,7 @@ header a:hover{
 	margin-top: 20px;
 	box-sizing: border-box;
 	padding: 70px 30px;
+	margin-bottom: 20px;
 }
 
 .head{
@@ -165,7 +172,7 @@ header a:hover{
 	border: none;
 	outline: none;
 	height: 40px;
-	background: #fbc531;
+	background: #f39c12;
 	border-radius: 20px;
 }
 
@@ -186,15 +193,6 @@ header a:hover{
 	color: #c23616;
 }
 
-/* FOOTER*/
-
-footer{
-	padding: 20px;
-	margin-top: 20px;
-	color: #ffffff;
-	background-color: #34495e;
-	text-align: center;
-}
 
 /* STYLING ADMINPAGE
 
@@ -253,7 +251,7 @@ TABLE */
 	width: 65%
 }
 
-#meetup li{
+#meetup ul li{
 	list-style-type: none;
 	padding: 20px;
 	border: #cccccc solid 1px;
@@ -261,7 +259,7 @@ TABLE */
 	background: #e6e6e6e6;
 }
 
-.main input, textarea{
+.main input, textarea, select{
 	width: 50%;
 	padding: 5px;
 }
@@ -279,19 +277,25 @@ TABLE */
 
 .main input[type="submit"]{
 	border: none;
-	background: #34495e;
+	background: #f39c12;
 	color: #ffffff;
 	border-radius: 10px;
 }
 
 .main input[type="submit"]:hover{
-	background: #079992;
+	background: #c23616;
 	cursor: pointer;
 }
 
 .main input[type="text"], input[type="date"], textarea{
 	border:1px solid #DADADA;
-	
+	padding: 10px 20px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.main select{
+	border:1px solid #DADADA;
+	padding: 10px 20px;
 }
 
 /* User page */
@@ -307,6 +311,7 @@ TABLE */
 #meetup img{
 	border-radius: 50%;
 	width: 50%;
+	text-align: center;
 }
 
 .meetup{
@@ -314,8 +319,13 @@ TABLE */
 	padding: 20px;
 	border: #cccccc solid 1px;
 	margin-bottom: 5px;
+	margin-top: 20px;
 	background: #e6e6e6e6;
 	text-align: center;
+}
+
+.meetup ul{
+	list-style-type: none;
 }
 
 .meetup img{
@@ -361,4 +371,18 @@ TABLE */
 		overflow: auto;
 		white-space: nowrap;
 	}
+}
+
+/* FOOTER*/
+
+footer{
+	position: relative;
+	left: 0;
+	padding: 20px;
+	bottom: 0;
+	color: #ffffff;
+	background-color: #34495e;
+	text-align: center;
+	height: 50px; 
+	margin-top: 20px;
 }

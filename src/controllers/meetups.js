@@ -8,6 +8,7 @@ import db from '../db/connect';
 import Meetup from '../model/Meetup';
 import validation from '../helpers/validations';
 
+
 const Meetups = {
   createMeetup(req, res) {
     const {
@@ -157,6 +158,5 @@ const Meetups = {
     });
   },
 };
-
 
 export default Meetups;

@@ -1,6 +1,4 @@
-import moment from 'moment';
-import uuid from 'uuid/v1';
-
+/* eslint-disable no-restricted-syntax */
 class Meetup {
   constructor(location, images, topic, happeningOn, tags) {
       this.location = location,
