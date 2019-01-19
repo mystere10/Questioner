@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable no-plusplus */
 /* eslint-disable no-restricted-syntax */
 import uuid from 'uuid/v1';
@@ -99,7 +100,16 @@ class Questions {
 
   getAllQuestions(meetup) {
     return this.questions.filter(meet => meet.meetup === meetup);
+=======
+class Questions {
+  constructor(createdBy, meetup, title, body, votes) {
+    this.createdBy = createdBy;
+    this.meetup = meetup;
+    this.title = title;
+    this.body = body;
+    this.votes = votes;
+>>>>>>> challenge-3
   }
 }
 
-export default new Questions();
+export default Questions;
