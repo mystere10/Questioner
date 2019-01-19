@@ -1,8 +1,13 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-restricted-syntax */
 import uuid from 'uuid/v1';
 import moment from 'moment';
+import { BADRESP } from 'dns';
 
 class Questions {
   constructor() {
+    this.upvoteData = [];
+    this.downvoteData = [];
     this.questions = [
       {
         id: 'e1b1e200-19e4-11e9-938d-5d7455c4fa14',
@@ -42,20 +47,54 @@ class Questions {
     return this.questions.find(voteq => voteq.id === id);
   }
 
-  upvoteQ(id, data) {
+  upvoteQ(id, data, user) {
     const upvote = this.findQuestion(id);
     const index = this.questions.indexOf(upvote);
-    this.questions[index].upvote = data.upvote + 1 || upvote.upvote + 1;
 
-    return this.questions[index];
+    const downvote = this.findQuestion(id);
+    const index2 = this.questions.indexOf(downvote);
+
+    if (this.upvoteData.indexOf(user) === -1 && this.downvoteData.indexOf(user) === -1) {
+      this.upvoteData.push(user);
+      this.questions[index].upvote = data.upvote + 1 || upvote.upvote + 1;
+    } else if (this.upvoteData.indexOf(user) === -1 && this.downvoteData.indexOf(user) !== -1) {
+      this.downvoteData.splice(index, 1);
+      this.questions[index2].downvote = data.downvote - 1 || downvote.downvote - 1;
+      if (this.questions[index].upvote > 0) {
+        this.questions[index].upvote = data.upvote - 1 || upvote.upvote - 1;
+      }
+    } else if (this.upvoteData.indexOf(user) !== -1) {
+      this.upvoteData.splice(index, 1);
+      this.questions[index].upvote = data.upvote - 1 || upvote.upvote - 1;
+    }
+    const vote = this.questions[index];
+    const votedUser = this.upvoteData;
+    return { vote, votedUser };
   }
 
-  downvoteQ(id, data) {
+  downvoteQ(id, data, user) {
     const downvote = this.findQuestion(id);
     const index = this.questions.indexOf(downvote);
-    this.questions[index].downvote = data.downvote + 1 || downvote.downvote + 1;
 
-    return this.questions[index];
+    const upvote = this.findQuestion(id);
+    const index2 = this.questions.indexOf(upvote);
+
+    if (this.downvoteData.indexOf(user) === -1 && this.upvoteData.indexOf(user) === -1) {
+      this.downvoteData.push(user);
+      this.questions[index].downvote = data.downvote + 1 || downvote.downvote + 1;
+    } else if (this.downvoteData.indexOf(user) === -1 && this.upvoteData.indexOf(user) !== -1) {
+      this.upvoteData.splice(index, 1);
+      if (this.questions[index2].upvote > 0) {
+        this.questions[index2].upvote = data.upvote - 1 || downvote.upvote - 1;
+      }
+      this.questions[index].downvote = data.downvote + 1 || downvote.downvote + 1;
+    } else if (this.downvoteData.indexOf(user) !== -1) {
+      this.downvoteData.splice(index, 1);
+      this.questions[index].downvote = data.downvote - 1 || upvote.downvote - 1;
+    }
+    const vote = this.questions[index];
+    const votedUser = this.downvoteData;
+    return { vote, votedUser };
   }
 
   getAllQuestions(meetup) {
