@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import questionModel from '../model/Questions';
 import validations from '../helpers/validations';
+import usersModel from '../model/User';
 
 const Question = {
   createQuestion(req, res) {
@@ -32,8 +33,15 @@ const Question = {
         message: 'No question with the specified id',
       });
     }
-
-    const like = questionModel.upvoteQ(req.params.id, req.body);
+    const { user } = req.body;
+    const findUser = usersModel.getOneUser(user);
+    if (!findUser) {
+      return res.status(404).json({
+        status: '404',
+        meessage: 'No user found with the specified id',
+      });
+    }
+    const like = questionModel.upvoteQ(req.params.id, req.body, req.body.user);
     return res.status(200).json({
       status: '200',
       message: 'Successful',
@@ -49,8 +57,15 @@ const Question = {
         message: 'No question with the specified id',
       });
     }
-
-    const unlike = questionModel.downvoteQ(req.params.id, req.body);
+    const { user } = req.body;
+    const findUser = usersModel.getOneUser(user);
+    if (!findUser) {
+      return res.status(404).json({
+        status: '404',
+        meessage: 'No user found with the specified id',
+      });
+    }
+    const unlike = questionModel.downvoteQ(req.params.id, req.body, req.body.user);
     return res.status(200).json({
       status: '200',
       message: 'Successful',
