@@ -25,20 +25,26 @@ const meetupSchema = Joi.object().keys({
     .required(),
   happeningOn: Joi.date()
     .required(),
-  tags: Joi.array().items(Joi.string().min(3)),
+
+  tags: Joi.string().alphanum().min(3),
 });
 
 const questionSchema = Joi.object().keys({
-  createdBy: Joi.string().min(36).max(36)
+  createdBy: Joi.number().integer()
+    .required(),
+  meetup: Joi.number().integer()
     .required(),
   title: Joi.string().min(5).max(50)
     .required(),
   body: Joi.string().min(5).max(120)
     .required(),
+  votes: Joi.number().integer(),
 });
 
-const rsvpSchema = Joi.object().keys({
-  status: Joi.string().min(3).max(5)
+const loginSchema = Joi.object().keys({
+  username: Joi.string().alphanum().min(3).max(50)
+    .required(),
+  password: Joi.string().alphanum().min(3).max(50)
     .required(),
 });
 
@@ -46,5 +52,5 @@ export default {
   userSchema,
   meetupSchema,
   questionSchema,
-  rsvpSchema,
+  loginSchema,
 };

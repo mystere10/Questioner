@@ -1,11 +1,13 @@
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import homepage from './routes/index';
 import meetups from './routes/meetup';
 import users from './routes/users';
 import questions from './routes/questions';
 
+dotenv.config();
 
 // Init app
 const app = express();
