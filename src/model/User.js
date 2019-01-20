@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 
+// User class
 class User {
   constructor(firstname, lastname, othername, email, phoneNumber, username, password) {
     this.firstname = firstname;

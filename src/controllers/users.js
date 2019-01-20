@@ -8,6 +8,7 @@ import validation from '../helpers/validations';
 import db from '../db/connect';
 import queries from '../db/sqlQueries';
 
+// User registration controller
 const Users = {
   register(req, res) {
     const {
@@ -26,19 +27,23 @@ const Users = {
         const {
           firstname, lastname, othername, email, phoneNumber, username,
         } = response[0];
-        res.status(201).json({
-          message: 'User sucessufully registered',
-          response: {
-            firstname, lastname, othername, email, phoneNumber, username,
-          },
+        jwt.sign({ response: response[0] }, 'secretkey', (err, token) => {
+          res.status(201).json({
+            status: '201',
+            token,
+            message: 'User sucessufully registered',
+            response: {
+              firstname, lastname, othername, email, phoneNumber, username,
+            },
+          });
         });
       }).catch((error) => {
-        res.status(403).send({ message: 'Not registered' });
-        console.log(error);
+        res.status(500).send({ message: 'Not registered', error });
       });
     }
   },
 
+  // User login controller
   login(req, res) {
     const {
       username, password,
@@ -53,17 +58,18 @@ const Users = {
       const query = db(queries.login, [username, password]);
       query.then((response) => {
         if (response.length === 0) {
-          res.status(404).send({ message: 'User not found' });
+          res.status(404).send({ message: 'Incorrect username or password' });
         }
         jwt.sign({ username }, 'secretkey', (err, token) => {
           res.status(200).json({
+            status: '200',
             message: 'Welcome',
             token,
             user: response[0],
           });
         });
       }).catch((error) => {
-        console.log(error);
+        res.status(500).send({ message: 'an error has occured', error });
       });
     }
   },

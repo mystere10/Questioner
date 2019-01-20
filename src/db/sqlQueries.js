@@ -8,7 +8,7 @@ const registrations = 'INSERT INTO registrations(firstname, lastname, othername,
 const createMeetup = 'INSERT INTO meetup(location, images, topic, happeningon, tags)VALUES($1,$2,$3,$4,$5) RETURNING * ';
 
 // Creating a question
-const createQuestion = 'INSERT INTO question(createdby, meetup, title, body, votes)VALUES($1,$2,$3,$4,$5) RETURNING * ';
+const createQuestion = 'INSERT INTO question(createdby, meetup, title, body)VALUES($1,$2,$3,$4) RETURNING * ';
 
 // Creating a RSVP
 const rsvp = 'INSERT INTO rsvp(meetup, userid, response)VALUES($1,$2,$3) RETURNING * ';
@@ -20,7 +20,7 @@ const getMeetup = 'SELECT * FROM meetup WHERE status = $1';
 const getOneMeetup = 'SELECT * FROM meetup WHERE id = $1 AND status = $2';
 
 // GET upcoming meetup
-const upcoming = 'SELECT * FROM meetup WHERE happeningon > $1::DATE';
+const upcoming = 'SELECT * FROM meetup WHERE happeningon > $1::DATE AND status = $2';
 
 // Upvote
 const upvote = 'UPDATE question SET votes = votes + 1 WHERE id = $1';
@@ -29,7 +29,7 @@ const upvote = 'UPDATE question SET votes = votes + 1 WHERE id = $1';
 const downvote = 'UPDATE question SET votes = votes - 1 WHERE id = $1 and votes > 0';
 
 // Delete a meetup (updating the status)
-const deletemeetup = 'UPDATE meetup SET status = $1 WHERE id = $2 RETURNING * ';
+const deletemeetup = 'UPDATE meetup SET status = $1 WHERE id = $2';
 
 // Select users
 const getOneUser = 'SELECT * FROM registrations WHERE id = $1';
@@ -39,6 +39,9 @@ const getOneQuestion = 'SELECT * FROM question WHERE id = $1';
 
 // Login
 const login = 'SELECT * FROM registrations WHERE username = $1 and password = $2';
+
+// Questions for a specific meetup
+const questionMeetup = 'SELECT * FROM question WHERE meetup = $1';
 
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
@@ -53,5 +56,6 @@ sqlQuery.deletemeetup = deletemeetup;
 sqlQuery.getOneUser = getOneUser;
 sqlQuery.getOneQuestion = getOneQuestion;
 sqlQuery.login = login;
+sqlQuery.questionMeetup = questionMeetup;
 
 export default sqlQuery;

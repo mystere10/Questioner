@@ -69,6 +69,7 @@ describe('Meetup endpoint test', () => {
 
   it('should respond to a meetup', (done) => {
     const rsvp = {
+      user: 'e1b1e200-19e4-11e9-938d-5d7455f4fa14',
       status: 'Yes',
     };
 
