@@ -27,7 +27,8 @@ const meetupSchema = Joi.object().keys({
     .required(),
   happeningOn: Joi.date()
     .required(),
-  tags: Joi.array().items(Joi.string().min(3)),
+
+  tags: Joi.string().alphanum().min(3),
 });
 
 // Validations for questions

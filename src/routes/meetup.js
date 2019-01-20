@@ -12,4 +12,5 @@ router.get('/', controllers.getAllMeetup);
 router.delete('/:id', controllers.deleteOneMeetup);
 router.post('/:id/rsvps', controllers.respondToMeetup);
 router.post('/:id/questions', controllers.askQuestion);
+
 export default router;

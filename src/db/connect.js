@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 
 
 dotenv.config();
+
 // Databse infos
 const pool = new Pool({
   host: process.env.DB_HOST,
