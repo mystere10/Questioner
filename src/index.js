@@ -14,6 +14,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Initial routes to defferent controllers
 app.use(morgan('dev'));
 app.use('/', homepage);
 app.use('/api/v1/meetups', meetups);

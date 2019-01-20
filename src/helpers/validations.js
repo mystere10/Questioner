@@ -1,5 +1,6 @@
 import Joi from 'joi';
 
+// Validations for users
 const userSchema = Joi.object().keys({
   firstname: Joi.string().alphanum().min(3).max(50)
     .required(),
@@ -16,6 +17,7 @@ const userSchema = Joi.object().keys({
     .required(),
 });
 
+// Validations for meetups
 const meetupSchema = Joi.object().keys({
   location: Joi.string().alphanum().min(3).max(50)
     .required(),
@@ -25,21 +27,22 @@ const meetupSchema = Joi.object().keys({
     .required(),
   happeningOn: Joi.date()
     .required(),
-  tags: Joi.string().alphanum().min(3),
+  tags: Joi.array().items(Joi.string().min(3)),
 });
 
+// Validations for questions
 const questionSchema = Joi.object().keys({
   createdBy: Joi.number().integer()
-    .required(),
-  meetup: Joi.number().integer()
     .required(),
   title: Joi.string().min(5).max(50)
     .required(),
   body: Joi.string().min(5).max(120)
     .required(),
-  votes: Joi.number().integer(),
+  upvote: Joi.number().integer(),
+  downvote: Joi.number().integer(),
 });
 
+// Validation for login info
 const loginSchema = Joi.object().keys({
   username: Joi.string().alphanum().min(3).max(50)
     .required(),

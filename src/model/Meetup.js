@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 
+// Meetup class
 class Meetup {
   constructor(location, images, topic, happeningOn, tags) {
     this.location = location;

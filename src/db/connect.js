@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 
 
 dotenv.config();
-
+// Databse infos
 const pool = new Pool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -19,6 +19,7 @@ const pool = new Pool({
 
 const connect = async () => await pool.connect();
 
+// Tables to be used
 const defaultDatabases = async () => {
   const signup = `CREATE TABLE IF NOT EXISTS
 registrations(
@@ -41,8 +42,8 @@ meetup(
     location VARCHAR(50) NOT NULL,
     images VARCHAR(128),
     topic VARCHAR(128) NOT NULL,
-    happeningon TIMESTAMP NOT NULL UNIQUE,
-    tags VARCHAR(128),
+    happeningon DATE NOT NULL UNIQUE,
+    tags text[],
     status VARCHAR(15) DEFAULT 'ACTIVE'
 );`;
 
@@ -53,8 +54,9 @@ question(
     createdby INTEGER REFERENCES registrations(id),
     meetup INTEGER REFERENCES meetup(id),
     title VARCHAR(50) NOT NULL,
-    body VARCHAR(128) NOT NULL,
-    votes INTEGER DEFAULT 0
+    body TEXT NOT NULL,
+    upvote INTEGER DEFAULT 0,
+    downvote INTEGER DEFAULT 0
 );`;
 
   const rsvp = `CREATE TABLE IF NOT EXISTS
@@ -65,11 +67,21 @@ rsvp(
     response VARCHAR(128) NOT NULL
 );`;
 
+  const vote = `CREATE TABLE IF NOT EXISTS
+votes(
+  id SERIAL PRIMARY KEY,
+  userid INTEGER REFERENCES registrations(id),
+  question INTEGER REFERENCES question(id),
+  upvote INTEGER DEFAULT 0,
+  downvote INTEGER DEFAULT 0
+);`;
+
   const connection = await connect();
   await connection.query(signup);
   await connection.query(meetup);
   await connection.query(question);
   await connection.query(rsvp);
+  await connection.query(vote);
 };
 
 const dropTables = async () => {
@@ -88,7 +100,7 @@ const db = async (sql, data = []) => {
     const result = await connection.query(sql, data);
     return result.rows;
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
   } finally {
     // close the pool or the databasee
     connection.release();
