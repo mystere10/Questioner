@@ -3,11 +3,13 @@
 /* eslint-disable no-shadow */
 /* eslint-disable max-len */
 import Joi from 'joi';
+import jwt from 'jsonwebtoken';
 import queries from '../db/sqlQueries';
 import db from '../db/connect';
 import Meetup from '../model/Meetup';
 import Question from '../model/Questions';
 import validation from '../helpers/validations';
+import auth from '../helpers/auth';
 
 // Creating a meetup controller
 const Meetups = {
@@ -162,23 +164,29 @@ const Meetups = {
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
     const dateString2 = `${year}-${month + 1}-${date}`;
+
     const meetupStatus = 'ACTIVE';
-    console.log(dateString2);
-    const upcomingMeetups = db(queries.upcoming, [dateString2, meetupStatus]);
-    upcomingMeetups.then((response) => {
-      if (response.length === 0) {
-        res.status(404).send({ status: '404', message: 'Not found' });
-      } else {
-        res.status(200).json({
-          status: '200',
-          message: 'List of upcoming meetup',
-          upcoming: response,
+    // jwt.verify(req.token, 'secretkey', (error, authData) => {
+    //   if (error) {
+    //     res.sendStatus(403);
+    //   } else {
+        const upcomingMeetups = db(queries.upcoming, [dateString2, meetupStatus]);
+        upcomingMeetups.then((response) => {
+          if (response.length === 0) {
+            res.status(404).send({ status: '404', message: 'Not found' });
+          } else {
+            res.status(200).json({
+              status: '200',
+              message: 'List of upcoming meetup',
+              upcoming: response,
+              // authData,
+            });
+          }
+        }).catch((error) => {
+          res.status(500).send({ message: 'An error has occured', error });
         });
-      }
-    }).catch((error) => {
-      res.status(500).send({ message: 'An error has occured' });
-      console.log(error);
-    });
+    //   }
+    // // });
   },
 
   askQuestion(req, res) {

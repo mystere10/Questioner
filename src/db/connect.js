@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-return-await */
 import '@babel/polyfill';
+import sqlQueries from './sqlQueries';
 
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
@@ -22,6 +23,17 @@ const connect = async () => await pool.connect();
 
 // Tables to be used
 const defaultDatabases = async () => {
+  const admininfo = [
+    process.env.ADMIN_FIRSTNAME,
+    process.env.ADMIN_LASTNAME,
+    process.env.ADMIN_OTHER,
+    process.env.ADMIN_EMAIL,
+    process.env.ADMIN_PHONENUMBER,
+    process.env.ADMIN_USERNAME,
+    process.env.ADMIN_PASSWORD,
+    process.env.IS_ADMIN,
+  ];
+
   const signup = `CREATE TABLE IF NOT EXISTS
 registrations(
     id SERIAL PRIMARY KEY,
@@ -83,6 +95,7 @@ votes(
   await connection.query(question);
   await connection.query(rsvp);
   await connection.query(vote);
+  await connection.query(sqlQueries.adminInfos, admininfo);
 };
 
 const dropTables = async () => {

@@ -1,5 +1,6 @@
-
 const sqlQuery = {};
+
+const adminInfos = 'INSERT INTO registrations(firstname, lastname, othername, email, phonenumber, username, password, isadmin)VALUES($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT (email) DO NOTHING';
 
 // Registering a new user
 const registrations = 'INSERT INTO registrations(firstname, lastname, othername, email, phonenumber, username, password)VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING * ';
@@ -38,7 +39,7 @@ const getOneUser = 'SELECT * FROM registrations WHERE id = $1';
 const getOneQuestion = 'SELECT * FROM question WHERE id = $1';
 
 // Login
-const login = 'SELECT * FROM registrations WHERE username = $1 and password = $2';
+const login = 'SELECT * FROM registrations WHERE email = $1 and password = $2';
 
 // Questions for a specific meetup
 const questionMeetup = 'SELECT * FROM question WHERE meetup = $1';
@@ -57,5 +58,6 @@ sqlQuery.getOneUser = getOneUser;
 sqlQuery.getOneQuestion = getOneQuestion;
 sqlQuery.login = login;
 sqlQuery.questionMeetup = questionMeetup;
+sqlQuery.adminInfos = adminInfos;
 
 export default sqlQuery;
