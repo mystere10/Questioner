@@ -46,21 +46,21 @@ const Users = {
   // User login controller
   login(req, res) {
     const {
-      username, password,
+      email, password,
     } = req.body;
 
     const { error } = Joi.validate({
-      username, password,
+      email, password,
     }, validation.loginSchema);
     if (error) {
       res.status(400).json({ error: error.details[0].message });
     } else {
-      const query = db(queries.login, [username, password]);
+      const query = db(queries.login, [email, password]);
       query.then((response) => {
         if (response.length === 0) {
           res.status(404).send({ message: 'Incorrect username or password' });
         }
-        jwt.sign({ username }, 'secretkey', (err, token) => {
+        jwt.sign({ response: response[0] }, 'secretkey', { expiresIn: '1h' }, (err, token) => {
           res.status(200).json({
             status: '200',
             message: 'Welcome',

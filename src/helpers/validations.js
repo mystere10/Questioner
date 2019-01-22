@@ -45,7 +45,7 @@ const questionSchema = Joi.object().keys({
 
 // Validation for login info
 const loginSchema = Joi.object().keys({
-  username: Joi.string().alphanum().min(3).max(50)
+  email: Joi.string().email({ minDomainAtomas: 2 })
     .required(),
   password: Joi.string().alphanum().min(3).max(50)
     .required(),
