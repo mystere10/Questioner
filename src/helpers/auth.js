@@ -27,11 +27,12 @@ const verifyAdmin = (req, res, next) => {
     const bearer = baearerHeader.split(' ');
     const bearerToken = bearer[1];
     req.token = bearerToken;
-    jwt.verify(req.token, 'secretkey', { expiresIn: '1h' }, (error, authData) => {
+    jwt.verify(req.token, 'secretkey', (error, authData) => {
       if (error) {
         res.sendstatus(403);
       }
       if (authData.response.isadmin === true) {
+        req.userId = authData.response.id;
         next();
       } else if (authData.response.isadmin === false) {
         res.status(403).json({
@@ -54,7 +55,7 @@ const verifyUser = (req, res, next) => {
     const bearer = baearerHeader.split(' ');
     const bearerToken = bearer[1];
     req.token = bearerToken;
-    jwt.verify(req.token, 'secretkey', { expiresIn: '1h' }, (error, authData) => {
+    jwt.verify(req.token, 'secretkey', (error, authData) => {
       if (error) {
         res.status(403).json({
           status: '403',
@@ -62,6 +63,7 @@ const verifyUser = (req, res, next) => {
         });
       }
       if (authData.response.isadmin === false) {
+        req.userId = authData.response.id;
         next();
       } else if (authData.response.isadmin === true) {
         res.status(403).json({

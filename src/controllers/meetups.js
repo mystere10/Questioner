@@ -9,7 +9,6 @@ import db from '../db/connect';
 import Meetup from '../model/Meetup';
 import Question from '../model/Questions';
 import validation from '../helpers/validations';
-import auth from '../helpers/auth';
 
 // Creating a meetup controller
 const Meetups = {
@@ -116,8 +115,9 @@ const Meetups = {
   respondToMeetup(req, res) {
     const meetupId = req.params.id;
     const meetupStatus = 'ACTIVE';
+    const userid = req.userId;
     const {
-      user, status,
+      status,
     } = req.body;
 
     const rvspSchema = Joi.object().keys({
@@ -126,7 +126,7 @@ const Meetups = {
       status: Joi.string().alphanum().min(2).max(5)
         .required(),
     });
-    const { error } = Joi.validate({ user, status }, rvspSchema);
+    const { error } = Joi.validate({ userid, status }, rvspSchema);
     if (error) {
       res.status(400).send({ error: error.details[0].message });
     }
@@ -135,12 +135,12 @@ const Meetups = {
       if (response.length === 0 || response === 'undefined') {
         res.status(404).send({ status: '404', message: 'Meetup not found with the specified id' });
       } else {
-        const findUser = db(queries.getOneUser, [user]);
+        const findUser = db(queries.getOneUser, [userid]);
         findUser.then((response) => {
           if (response.length === 0 || response === 'undefined') {
             res.status(404).send({ status: '404', message: 'User not found' });
           } else {
-            const rsvp = db(queries.rsvp, [meetupId, user, status]);
+            const rsvp = db(queries.rsvp, [meetupId, userid, status]);
             rsvp.then((response) => {
               res.status(201).json({
                 message: 'Question submitted',
@@ -166,36 +166,29 @@ const Meetups = {
     const dateString2 = `${year}-${month + 1}-${date}`;
 
     const meetupStatus = 'ACTIVE';
-    // jwt.verify(req.token, 'secretkey', (error, authData) => {
-    //   if (error) {
-    //     res.sendStatus(403);
-    //   } else {
-        const upcomingMeetups = db(queries.upcoming, [dateString2, meetupStatus]);
-        upcomingMeetups.then((response) => {
-          if (response.length === 0) {
-            res.status(404).send({ status: '404', message: 'Not found' });
-          } else {
-            res.status(200).json({
-              status: '200',
-              message: 'List of upcoming meetup',
-              upcoming: response,
-              // authData,
-            });
-          }
-        }).catch((error) => {
-          res.status(500).send({ message: 'An error has occured', error });
+    const upcomingMeetups = db(queries.upcoming, [dateString2, meetupStatus]);
+    upcomingMeetups.then((response) => {
+      if (response.length === 0) {
+        res.status(404).send({ status: '404', message: 'Not found' });
+      } else {
+        res.status(200).json({
+          status: '200',
+          message: 'List of upcoming meetup',
+          upcoming: response,
         });
-    //   }
-    // // });
+      }
+    }).catch((error) => {
+      res.status(500).send({ message: 'An error has occured', error });
+    });
   },
 
   askQuestion(req, res) {
     const meetup = req.params.id;
     const status = 'ACTIVE';
+    const createdBy = req.userId;
     const {
-      createdBy, title, body,
+      title, body,
     } = req.body;
-
     const { error } = Joi.validate({
       createdBy, title, body,
     }, validation.questionSchema);

@@ -24,10 +24,10 @@ const getOneMeetup = 'SELECT * FROM meetup WHERE id = $1 AND status = $2';
 const upcoming = 'SELECT * FROM meetup WHERE happeningon > $1::DATE AND status = $2';
 
 // Upvote
-const upvote = 'UPDATE question SET votes = votes + 1 WHERE id = $1';
+const upvote = 'INSERT INTO votes(userid, question, upvote)VALUES($1,$2,$3) RETURNING * ';
 
 // Downvote
-const downvote = 'UPDATE question SET votes = votes - 1 WHERE id = $1 and votes > 0';
+const downvote = 'INSERT INTO votes(userid, question, downvote)VALUES($1,$2,$3) RETURNING * ';
 
 // Delete a meetup (updating the status)
 const deletemeetup = 'UPDATE meetup SET status = $1 WHERE id = $2';
@@ -36,13 +36,25 @@ const deletemeetup = 'UPDATE meetup SET status = $1 WHERE id = $2';
 const getOneUser = 'SELECT * FROM registrations WHERE id = $1';
 
 // Select question id
-const getOneQuestion = 'SELECT * FROM question WHERE id = $1';
+const getOneQuestion = 'SELECT * FROM question WHERE id=$1';
+
+// Counting up votes
+const countingupVotes = 'select question.id, question.createdon, question.createdby, question.meetup, question.title, question.body, votes.upvote, votes.question, COUNT(votes.upvote) AS upvotes_sum from question, votes where votes.upvote=1 and votes.question=question.id GROUP BY question.id, question.createdon, question.createdby, question.meetup, question.title, question.body, votes.question, votes.upvote, votes.downvote';
+
+// Countingdown votes
+const countingdownVotes = 'select question.id, question.createdon, question.createdby, question.meetup, question.title, question.body, votes.downvote, votes.question, COUNT(votes.downvote) AS downvote_sum from question, votes where votes.downvote=1 and votes.question=question.id GROUP BY question.id, question.createdon, question.createdby, question.meetup, question.title, question.body, votes.question, votes.downvote';
 
 // Login
 const login = 'SELECT * FROM registrations WHERE email = $1 and password = $2';
 
 // Questions for a specific meetup
 const questionMeetup = 'SELECT * FROM question WHERE meetup = $1';
+
+// Find if a user voted
+const checkifvoted = 'SELECT * FROM votes WHERE userid = $1 AND question = $2';
+
+// Delete voted user
+const deletevoteduser = 'DELETE FROM votes WHERE userid = $1 and question = $2';
 
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
@@ -59,5 +71,9 @@ sqlQuery.getOneQuestion = getOneQuestion;
 sqlQuery.login = login;
 sqlQuery.questionMeetup = questionMeetup;
 sqlQuery.adminInfos = adminInfos;
+sqlQuery.checkifvoted = checkifvoted;
+sqlQuery.deletevoteduser = deletevoteduser;
+sqlQuery.countingupVotes = countingupVotes;
+sqlQuery.countingdownVotes = countingdownVotes;
 
 export default sqlQuery;
