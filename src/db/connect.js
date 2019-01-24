@@ -10,15 +10,6 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// Databse infos
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
-  password: process.env.DB_PASSWORD,
-});
-
 let newPool;
 if (process.env.DATABASE_URL) {
   const connectionString = process.env.DATABASE_URL;
@@ -26,10 +17,16 @@ if (process.env.DATABASE_URL) {
     connectionString,
   });
 } else {
-  newPool = new Pool();
+  newPool = new Pool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    password: process.env.DB_PASSWORD,
+  });
 }
 
-const connect = async () => await pool.connect();
+const connect = async () => await newPool.connect();
 
 // Tables to be used
 const defaultDatabases = async () => {
