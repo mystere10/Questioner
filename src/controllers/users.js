@@ -24,17 +24,12 @@ const Users = {
       const user = new User(firstname, lastname, othername, email, phoneNumber, username, password);
       const query = db(queries.registrations, [user.firstname, user.lastname, user.othername, user.email, user.phoneNumber, user.username, user.password]);
       query.then((response) => {
-        const {
-          firstname, lastname, othername, email, phoneNumber, username,
-        } = response[0];
         jwt.sign({ response: response[0] }, 'secretkey', (err, token) => {
           res.status(201).json({
             status: '201',
             token,
             message: 'User sucessufully registered',
-            response: {
-              firstname, lastname, othername, email, phoneNumber, username,
-            },
+            user: response[0],
           });
         });
       }).catch((error) => {
