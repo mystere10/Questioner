@@ -19,6 +19,16 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
+let newPool;
+if (process.env.DATABASE_URL) {
+  const connectionString = process.env.DATABASE_URL;
+  newPool = new Pool({
+    connectionString,
+  });
+} else {
+  newPool = new Pool();
+}
+
 const connect = async () => await pool.connect();
 
 // Tables to be used
@@ -105,7 +115,7 @@ const dropTables = async () => {
   await connection.query(dropAlltables);
 };
 
-defaultDatabases();
+// defaultDatabases();
 
 // export default connect;
 const db = async (sql, data = []) => {
@@ -122,3 +132,4 @@ const db = async (sql, data = []) => {
 };
 
 export default db;
+export { defaultDatabases };
