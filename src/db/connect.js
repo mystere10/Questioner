@@ -105,6 +105,10 @@ votes(
   await connection.query(sqlQueries.adminInfos, admininfo);
 };
 
+if (process.env.NODE_ENV !== 'test') {
+  defaultDatabases();
+}
+
 const dropTables = async () => {
   const dropAlltables = 'DROP TABLE IF EXISTS registrations, meetup, question, rsvp CASCADE';
 

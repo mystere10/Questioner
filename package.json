@@ -6,8 +6,9 @@
   "scripts": {
     "build": "babel src -d src/dist",
     "server": "nodemon src/index.js --exec babel-node",
-    "start": "babel-node src/db/migrations.js | cross-env babel-node src/index.js",
-    "test": "cross-env babel-node src/db/migrations.js | cross-env nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require @babel/register tests/*.js --exit || true",
+    "start": "cross-env babel-node src/index.js",
+    "migrate": "cross-env babel-node src/db/migrations.js",
+    "test": "cross-env nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require @babel/register tests/*.js --exit || true",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
