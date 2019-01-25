@@ -28,13 +28,13 @@ const Meetups = {
       const query = db(queries.createMeetup, [meetup.location, meetup.images, meetup.topic, meetup.happeningOn, meetup.tags]);
       query.then((response) => {
         const {
-          id, location, images, topic, happeningOn, tags,
+          id, location, images, topic, happeningon, tags,
         } = response[0];
         res.status(201).json({
           status: '201',
           message: 'Meetup successully created',
           response: {
-            id, location, images, topic, happeningOn, tags,
+            id, location, images, topic, happeningon, tags,
           },
         });
       }).catch((error) => {

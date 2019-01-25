@@ -57,7 +57,6 @@ describe('Meetup endpoint test', () => {
   let meetupId;
   it('should create a meetup', (done) => {
     const newMeetup = {
-      id: 2,
       location: 'musanze',
       images: 'C:/Users/Mystère/Pictures/Emmanuel',
       topic: 'education',
@@ -73,13 +72,13 @@ describe('Meetup endpoint test', () => {
       .end((err, res) => {
         console.log(res.body);
         res.should.have.status(201);
-        res.should.be.json;
+        res.should.be.json();
         res.body.should.be.a('object');
-        res.body.should.have.property('meetup');
+        res.body.should.have.property('response');
         res.body.response.should.have.property('id');
         res.body.response.should.have.property('location');
         res.body.response.should.have.property('topic');
-        res.body.response.should.have.property('happeningOn');
+        res.body.response.should.have.property('happeningon');
         res.body.response.should.have.property('tags');
         meetupId = res.body.response.id;
         console.log(meetupId);
@@ -108,7 +107,6 @@ describe('Meetup endpoint test', () => {
       .end((err, res) => {
         console.log(res.body);
         res.should.have.status(200);
-        res.should.be.json();
         res.body.should.be.a('object');
         res.body.response.should.have.property('id');
         res.body.response.should.have.property('topic');
