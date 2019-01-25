@@ -11,12 +11,11 @@ describe('Question tests', () => {
   let id;
   it('should create a question', (done) => {
     const newQuestion = {
-      id: 'e1b1e200-19e4-11e9-938d-5d7455c4fa19',
-      createdBy: 'e1b1e200-19e4-11e9-938d-5d7455f4fa14',
+      id: 1,
       title: 'Health',
       body: 'Health is',
       upvote: 0,
-      downvote: 4,
+      downvote: 0,
     };
     chai.request(index)
       .post('/api/v1/meetups/e1b1e200-19e4-11e9-938d-5d7455b3fa14/questions')
@@ -42,7 +41,7 @@ describe('Question tests', () => {
       user: 'e1b1e200-19e4-11e9-938d-5d7455f4ca18',
     };
     chai.request(index)
-      .patch('/api/v1/questions/e1b1e200-19e4-11e9-938d-5d7455c4fa14/upvote')
+      .patch('/api/v1/1/upvote')
       .send(upvote)
       .end((err, res) => {
         res.should.have.status(200);
@@ -58,12 +57,8 @@ describe('Question tests', () => {
   });
 
   it('should downvote a question', (done) => {
-    const downvote = {
-      user: 'e1b1e200-19e4-11e9-938d-5d7455f4ca18',
-    };
     chai.request(index)
-      .patch('/api/v1/questions/e1b1e200-19e4-11e9-938d-5d7455c4fa15/downvote')
-      .send(downvote)
+      .patch('/api/v1/1/downvote')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.question.vote.should.have.property('id');
@@ -78,7 +73,7 @@ describe('Question tests', () => {
 
   it('should get questions per meetup', (done) => {
     chai.request(index)
-      .get('/api/v1/questions/e1b1e200-19e4-11e9-938d-5d7455b3fa14')
+      .get('/api/v1/meetup/1/questions')
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('questions');
