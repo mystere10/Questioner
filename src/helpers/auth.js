@@ -29,7 +29,7 @@ const verifyAdmin = (req, res, next) => {
     req.token = bearerToken;
     jwt.verify(req.token, 'secretkey', (error, authData) => {
       if (error) {
-        res.sendstatus(403);
+        res.sendStatus(403);
       }
       if (authData.response.isadmin === true) {
         req.userId = authData.response.id;
@@ -66,6 +66,9 @@ const verifyUser = (req, res, next) => {
         req.userId = authData.response.id;
         next();
       } else if (authData.response.isadmin === true) {
+        req.userId = authData.response.id;
+        next();
+      } else {
         res.status(403).json({
           status: '403',
           message: 'Access forbidden',

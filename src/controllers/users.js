@@ -25,11 +25,16 @@ const Users = {
       const query = db(queries.registrations, [user.firstname, user.lastname, user.othername, user.email, user.phoneNumber, user.username, user.password]);
       query.then((response) => {
         jwt.sign({ response: response[0] }, 'secretkey', (err, token) => {
+          const {
+            firstname, lastname, othername, email, phoneNumber, username,
+          } = response[0];
           res.status(201).json({
             status: '201',
             token,
             message: 'User sucessufully registered',
-            user: response[0],
+            user: {
+              firstname, lastname, othername, email, phoneNumber, username,
+            },
           });
         });
       }).catch((error) => {
@@ -56,11 +61,16 @@ const Users = {
           res.status(404).send({ message: 'Incorrect username or password' });
         }
         jwt.sign({ response: response[0] }, 'secretkey', { expiresIn: '1h' }, (err, token) => {
+          const {
+            firstname, lastname, othername, email, phoneNumber, username,
+          } = response[0];
           res.status(200).json({
             status: '200',
             message: 'Welcome',
             token,
-            user: response[0],
+            user: {
+              firstname, lastname, othername, email, phoneNumber, username,
+            },
           });
         });
       }).catch((error) => {

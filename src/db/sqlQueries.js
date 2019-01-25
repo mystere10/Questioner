@@ -56,6 +56,9 @@ const checkifvoted = 'SELECT * FROM votes WHERE userid = $1 AND question = $2';
 // Delete voted user
 const deletevoteduser = 'DELETE FROM votes WHERE userid = $1 and question = $2';
 
+// Truncate table registration
+const truncateRegistration = 'TRUNCATE TABLE registrations, meetup, question, rsvp, votes RESTART IDENTITY CASCADE';
+
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
 sqlQuery.createQuestion = createQuestion;
@@ -75,5 +78,6 @@ sqlQuery.checkifvoted = checkifvoted;
 sqlQuery.deletevoteduser = deletevoteduser;
 sqlQuery.countingupVotes = countingupVotes;
 sqlQuery.countingdownVotes = countingdownVotes;
+sqlQuery.truncateRegistration = truncateRegistration;
 
 export default sqlQuery;
