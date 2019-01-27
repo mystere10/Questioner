@@ -27,7 +27,6 @@ describe('Meetup endpoint test', () => {
       .post('/api/v1/auth/signup')
       .send(newUser)
       .end((error, res) => {
-        console.log(res.body);
         res.body.should.be.a('object');
         id = res.body.user;
         clinentToken = res.body.token;
@@ -57,6 +56,7 @@ describe('Meetup endpoint test', () => {
   let meetupId;
   it('should create a meetup', (done) => {
     const newMeetup = {
+      id: 23,
       location: 'musanze',
       images: 'C:/Users/Mystère/Pictures/Emmanuel',
       topic: 'education',
@@ -70,9 +70,7 @@ describe('Meetup endpoint test', () => {
       .send(newMeetup)
       .set('Authorization', `Bearer ${adminToken}`)
       .end((err, res) => {
-        console.log(res.body);
         res.should.have.status(201);
-        res.should.be.json();
         res.body.should.be.a('object');
         res.body.should.have.property('response');
         res.body.response.should.have.property('id');
@@ -81,7 +79,6 @@ describe('Meetup endpoint test', () => {
         res.body.response.should.have.property('happeningon');
         res.body.response.should.have.property('tags');
         meetupId = res.body.response.id;
-        console.log(meetupId);
         done();
       });
   });
@@ -105,14 +102,15 @@ describe('Meetup endpoint test', () => {
       .get(`/api/v1/meetups/${meetupId}`)
       .set('Authorization', `Bearer ${adminToken}`)
       .end((err, res) => {
-        console.log(res.body);
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.response.should.have.property('id');
-        res.body.response.should.have.property('topic');
-        res.body.response.should.have.property('location');
-        res.body.response.should.have.property('happeningOn');
-        res.body.response.should.have.property('tags');
+        res.body.should.have.property('meetup');
+        res.body.meetup.should.have.property('id');
+        res.body.meetup.should.have.property('topic');
+        res.body.meetup.should.have.property('location');
+        res.body.meetup.should.have.property('happeningon');
+        res.body.meetup.should.have.property('tags');
+        res.body.meetup.should.have.property('status').eql('ACTIVE');
         done();
       });
   });
@@ -125,14 +123,13 @@ describe('Meetup endpoint test', () => {
     chai.request(index)
       .post(`/api/v1/meetups/${meetupId}/rsvps`)
       .send(rsvp)
-      .set('Authorization', `Bearer ${adminToken}`)
+      .set('Authorization', `Bearer ${clinentToken}`)
       .end((err, res) => {
         res.should.have.status(201);
-        res.should.be.json;
         res.body.should.be.a('object');
         res.body.response.should.have.property('meetup');
-        res.body.response.should.have.property('topic');
-        res.body.response.should.have.property('status');
+        res.body.response.should.have.property('userid');
+        res.body.response.should.have.property('response');
         done();
       });
   });
@@ -151,17 +148,14 @@ describe('Meetup endpoint test', () => {
 
   it('should delete a specific meetup', (done) => {
     chai.request(index)
-      .get('/api/v1/meetups')
-      .end((res, err) => {
-        chai.request(index)
-          .delete(`/api/v1/meetups/${id}`)
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.should.be.json;
-            res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Meetup successfully deleted');
-            done();
-          });
+      .delete(`/api/v1/meetups/${meetupId}`)
+      .set('Authorization', `Bearer ${adminToken}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.have.property('message').eql('Meetup successfully deleted');
+        done();
       });
   });
 });
