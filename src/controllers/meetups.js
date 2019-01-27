@@ -98,7 +98,7 @@ const Meetups = {
         const deleteMeetup = db(queries.deletemeetup, [statusDel, meetupId]);
         deleteMeetup.then((response) => {
           if (response) {
-            res.status(200).send({ message: 'Meetup deleted' });
+            res.status(200).send({ message: 'Meetup successfully deleted' });
           } else {
             res.status(400).send({ message: 'Meetup not deleted' });
           }
@@ -121,12 +121,10 @@ const Meetups = {
     } = req.body;
 
     const rvspSchema = Joi.object().keys({
-      user: Joi.number().integer()
-        .required(),
       status: Joi.string().alphanum().min(2).max(5)
         .required(),
     });
-    const { error } = Joi.validate({ userid, status }, rvspSchema);
+    const { error } = Joi.validate({ status }, rvspSchema);
     if (error) {
       res.status(400).send({ error: error.details[0].message });
     }
@@ -146,6 +144,8 @@ const Meetups = {
                 message: 'Question submitted',
                 question: response[0],
               });
+            }).catch((error) => {
+              console.log(error);
             });
           }
         }).catch((error) => {
