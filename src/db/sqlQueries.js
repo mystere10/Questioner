@@ -59,6 +59,9 @@ const deletevoteduser = 'DELETE FROM votes WHERE userid = $1 and question = $2';
 // Truncate table registration
 const truncateRegistration = 'TRUNCATE TABLE registrations, meetup, question, rsvp, votes RESTART IDENTITY CASCADE';
 
+// Post comment
+const postComment = 'INSERT INTO comments(userid, questionid, comment)VALUES($1,$2,$3) RETURNING *';
+
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
 sqlQuery.createQuestion = createQuestion;
@@ -79,5 +82,6 @@ sqlQuery.deletevoteduser = deletevoteduser;
 sqlQuery.countingupVotes = countingupVotes;
 sqlQuery.countingdownVotes = countingdownVotes;
 sqlQuery.truncateRegistration = truncateRegistration;
+sqlQuery.postComment = postComment;
 
 export default sqlQuery;
