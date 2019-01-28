@@ -8,5 +8,6 @@ const router = express.Router();
 router.patch('/:id/upvote', auth.verifyUser, controllers.upvote);
 router.patch('/:id/downvote', auth.verifyUser, controllers.downvote);
 router.get('/:meetupId', auth.verifyUser, controllers.questionForMeetups);
+router.post('/:id/comment', auth.verifyUser, controllers.commentForQuestions);
 
 export default router;

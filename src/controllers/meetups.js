@@ -47,20 +47,28 @@ const Meetups = {
   getOneMeetup(req, res) {
     const meetupId = req.params.id;
     const status = 'ACTIVE';
-    const oneMeetup = db(queries.getOneMeetup, [meetupId, status]);
-    oneMeetup.then((response) => {
-      if (response.length === 0 || response.length === 'undefined') {
-        res.status(404).send({ status: '404', message: 'No meetup found with the specified id' });
-      } else {
-        res.status(200).json({
-          status: '200',
-          message: 'Meetup created',
-          meetup: response[0],
-        });
-      }
-    }).catch((error) => {
-      res.status(500).send({ message: 'An error has occured', error });
-    });
+    const { error } = Joi.validate({
+      meetupId,
+    }, validation.meetupParams);
+
+    if (error) {
+      res.status(400).json({ error: error.details[0].message });
+    } else {
+      const oneMeetup = db(queries.getOneMeetup, [meetupId, status]);
+      oneMeetup.then((response) => {
+        if (response.length === 0 || response.length === 'undefined') {
+          res.status(404).send({ status: '404', message: 'No meetup found with the specified id' });
+        } else {
+          res.status(200).json({
+            status: '200',
+            message: 'Meetup created',
+            meetup: response[0],
+          });
+        }
+      }).catch((error) => {
+        res.status(500).send({ message: 'An error has occured', error });
+      });
+    }
   },
 
   // Fetching all meetups from the database
@@ -90,25 +98,33 @@ const Meetups = {
     const meetupId = req.params.id;
     const statusDel = 'NOT ACTIVE';
     const status = 'ACTIVE';
-    const findMeetup = db(queries.getOneMeetup, [meetupId, status]);
-    findMeetup.then((response) => {
-      if (response.length === 0 || response.length === 'undefined') {
-        res.status(404).send({ status: '404', message: 'No meetup with the specified id' });
-      } else {
-        const deleteMeetup = db(queries.deletemeetup, [statusDel, meetupId]);
-        deleteMeetup.then((response) => {
-          if (response) {
-            res.status(200).send({ message: 'Meetup successfully deleted' });
-          } else {
-            res.status(400).send({ message: 'Meetup not deleted' });
-          }
-        }).catch((error) => {
-          res.status(500).send({ message: 'An error has occured', error });
-        });
-      }
-    }).catch((error) => {
-      res.status(500).send({ message: 'An error has occured', error });
-    });
+    const { error } = Joi.validate({
+      meetupId,
+    }, validation.meetupParams);
+
+    if (error) {
+      res.status(400).json({ error: error.details[0].message });
+    } else {
+      const findMeetup = db(queries.getOneMeetup, [meetupId, status]);
+      findMeetup.then((response) => {
+        if (response.length === 0 || response.length === 'undefined') {
+          res.status(404).send({ status: '404', message: 'No meetup with the specified id' });
+        } else {
+          const deleteMeetup = db(queries.deletemeetup, [statusDel, meetupId]);
+          deleteMeetup.then((response) => {
+            if (response) {
+              res.status(200).send({ message: 'Meetup successfully deleted' });
+            } else {
+              res.status(400).send({ message: 'Meetup not deleted' });
+            }
+          }).catch((error) => {
+            res.status(500).send({ message: 'An error has occured', error });
+          });
+        }
+      }).catch((error) => {
+        res.status(500).send({ message: 'An error has occured', error });
+      });
+    }
   },
 
   // Respond to a meetup
@@ -120,41 +136,38 @@ const Meetups = {
       status,
     } = req.body;
 
-    const rvspSchema = Joi.object().keys({
-      status: Joi.string().alphanum().min(2).max(5)
-        .required(),
-    });
-    const { error } = Joi.validate({ status }, rvspSchema);
+    const { error } = Joi.validate({ status }, validation.rvspSchema);
     if (error) {
       res.status(400).send({ error: error.details[0].message });
-    }
-    const findMeetup = db(queries.getOneMeetup, [meetupId, meetupStatus]);
-    findMeetup.then((response) => {
-      if (response.length === 0 || response === 'undefined') {
-        res.status(404).send({ status: '404', message: 'Meetup not found with the specified id' });
-      } else {
-        const findUser = db(queries.getOneUser, [userid]);
-        findUser.then((response) => {
-          if (response.length === 0 || response === 'undefined') {
-            res.status(404).send({ status: '404', message: 'User not found' });
-          } else {
-            const rsvp = db(queries.rsvp, [meetupId, userid, status]);
-            rsvp.then((response) => {
-              res.status(201).json({
-                message: 'Question submitted',
-                question: response[0],
+    } else {
+      const findMeetup = db(queries.getOneMeetup, [meetupId, meetupStatus]);
+      findMeetup.then((response) => {
+        if (response.length === 0 || response === 'undefined') {
+          res.status(404).send({ status: '404', message: 'Meetup not found with the specified id' });
+        } else {
+          const findUser = db(queries.getOneUser, [userid]);
+          findUser.then((response) => {
+            if (response.length === 0 || response === 'undefined') {
+              res.status(404).send({ status: '404', message: 'User not found' });
+            } else {
+              const rsvp = db(queries.rsvp, [meetupId, userid, status]);
+              rsvp.then((response) => {
+                res.status(201).json({
+                  message: 'Question submitted',
+                  question: response[0],
+                });
+              }).catch((error) => {
+                console.log(error);
               });
-            }).catch((error) => {
-              console.log(error);
-            });
-          }
-        }).catch((error) => {
-          res.status(500).send({ message: 'An error has occured', error });
-        });
-      }
-    }).catch((error) => {
-      res.status(500).send({ message: 'An error has occured', error });
-    });
+            }
+          }).catch((error) => {
+            res.status(500).send({ message: 'An error has occured', error });
+          });
+        }
+      }).catch((error) => {
+        res.status(500).send({ message: 'An error has occured', error });
+      });
+    }
   },
 
   // Geting upcoming meetup
@@ -183,19 +196,19 @@ const Meetups = {
   },
 
   askQuestion(req, res) {
-    const meetup = req.params.id;
+    const meetupId = req.params.id;
     const status = 'ACTIVE';
     const createdBy = req.userId;
     const {
       title, body,
     } = req.body;
     const { error } = Joi.validate({
-      createdBy, title, body,
+      meetupId, createdBy, title, body,
     }, validation.questionSchema);
     if (error) {
       res.status(400).json({ error: error.details[0].message });
     } else {
-      const findMeetup = db(queries.getOneMeetup, [meetup, status]);
+      const findMeetup = db(queries.getOneMeetup, [meetupId, status]);
       findMeetup.then((response) => {
         if (response.length === 0) {
           res.status(404).send({ status: '404', message: 'No meetup with the specified id' });
@@ -205,7 +218,7 @@ const Meetups = {
             if (response.length === 0) {
               res.status(404).send({ status: '404', message: 'No user found with the specified id' });
             } else {
-              const question = new Question(createdBy, meetup, title, body);
+              const question = new Question(createdBy, meetupId, title, body);
               const query = db(queries.createQuestion, [question.createdBy, question.meetup, question.title, question.body]);
               query.then((response) => {
                 const {

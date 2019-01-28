@@ -96,12 +96,21 @@ votes(
   downvote INTEGER DEFAULT 0
 );`;
 
+  const comments = `CREATE TABLE IF NOT EXISTS
+comments(
+  id SERIAL PRIMARY KEY,
+  userid INTEGER REFERENCES registrations(id),
+  questionid INTEGER REFERENCES question(id),
+  comment text
+);`;
+
   const connection = await connect();
   await connection.query(signup);
   await connection.query(meetup);
   await connection.query(question);
   await connection.query(rsvp);
   await connection.query(vote);
+  await connection.query(comments);
   await connection.query(sqlQueries.adminInfos, admininfo);
 };
 
