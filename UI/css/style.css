@@ -190,9 +190,22 @@ header a:hover{
 }
 
 .login a:hover{
-	color: #c23616;
+	color: #e74c3c;
 }
 
+#loginButton{
+	background: #f39c12;
+	border: 0;
+	color: #34495e;
+	text-align: center;
+	padding: 15px 32px;
+	display: inline-block;
+	font-size: 16px;
+}
+
+#login-error{
+	color: red;
+}
 
 /* STYLING ADMINPAGE
 
@@ -267,7 +280,6 @@ TABLE */
 .main form{
 	margin-top: 10px;
 	padding: 0 0 20px;
-
 }
 
 .main form p{
@@ -345,6 +357,21 @@ TABLE */
 	float: right;
 	width: 30%;
 	margin-top: 10px;
+}
+
+.questionrow{
+	float: right;
+	width: 30%;
+	margin-top: 10px;
+	padding: 5px;
+	border: #cccccc solid 1px;
+	margin-bottom: 5px;
+	background: #e6e6e6e6;
+	margin-left: 10px;
+}
+
+.createQuestion{
+	display: inline;
 }
 
 /* Media queries*/

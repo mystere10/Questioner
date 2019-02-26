@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<script type="text/javascript" src="js/users.js"></script>
 </head>
 <body>
 	<header>
@@ -26,12 +27,14 @@
 				<div class="container">
 <!-- 					<img class="head" src="./assets/head.png">
  -->					<h1>Login</h1>
-					<form>
-						<p>Username</p>
-						<input type="text" name="username">
+					<form method="POST" id="loginForm">
+						<span id="login-error"></span>
+						<p>Email</p>
+						<input type="text" name="email">
+						<span id="email-error"></span>
 						<p>Password</p>
 						<input type="Password" name="password">
-						<input type="submit" name="submit" value="Signin" onclick="redirect()">
+						<button onclick="login()" id="loginButton">Login</button><br>						
 						<a href="register.html">Don't have an account?</a><br>
 						<a href="reset.html">Forgot password?</a>
 					</form>
@@ -44,10 +47,3 @@
 		<p>Questioner, copyright &copy; 2018</p>
 	</footer>
 </html>
-
-<script type="text/javascript">
-	
-	function redirect(){
-		window.open('userhome.html');
-	}
-</script>

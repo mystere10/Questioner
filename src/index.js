@@ -6,6 +6,7 @@ import homepage from './routes/index';
 import meetups from './routes/meetup';
 import users from './routes/users';
 import questions from './routes/questions';
+import path from 'path';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.resolve(__dirname, '../UI')));
 
 // Initial routes to defferent controllers
 app.use(morgan('dev'));
