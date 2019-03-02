@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>User | Home</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+	<script type="text/javascript">
+		var countlikes = 0;
+		var countunlikes = 0;
+
+		var countlikes2 = 0;
+		var countunlikes2 = 0;
+
+		function add(){
+			alert("Liked");
+			countlikes++;
+			document.getElementById("add").innerHTML = countlikes;
+			console.log(countlikes);
+			
+		}
+
+
+		function substract(){
+			alert("Unliked");
+			countunlikes++;
+			document.getElementById("sub").innerHTML = countunlikes;
+			console.log(countunlikes);
+
+		}
+
+		function preventing(){
+			
+			alert("Liked");
+			countlikes2++;
+			document.getElementById("prev").innerHTML = countlikes2;
+			console.log(countlikes);
+		}
+
+		function preventing2(){
+			alert("Unliked");
+			countunlikes2++;
+			document.getElementById("preventing2").innerHTML = countunlikes2;
+			console.log(countunlikes);
+
+		}
+		
+	</script>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<nav>
+				<ul>
+					<li class="current"><a href="userhome.html">Home</a></li>
+					<li><a href="question.html">Create Question</a></li>
+					<li><a href="profile.html">Profile</a></li>
+					<li><a href="login.html">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+		<section>
+			<div class="createQuestion">
+				<div class="container">
+					<div class="main">
+						<form>
+							<p>Select a meetup</p>
+							<select name="meetuplist">
+								<option value="#">Education</option>
+								<option value="#">Sport</option>
+								<option value="#">Malnutrition</option>
+								<option value="#">Hygiene</option>
+							</select>
+
+							<p>Quetion</p>
+							<textarea cols="10" rows="10">Write your question...</textarea>
+							<input type="submit" name="submit" value="Post">
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>	
+		<footer>
+			<p>Questioner, copyright &copy; 2018</p>
+	</footer>
+	</body>
+	
+</html>
+</script>

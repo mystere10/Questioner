@@ -62,6 +62,12 @@ const truncateRegistration = 'TRUNCATE TABLE registrations, meetup, question, rs
 // Post comment
 const postComment = 'INSERT INTO comments(userid, questionid, comment)VALUES($1,$2,$3) RETURNING *';
 
+// Check if email exists
+const useremail = 'SELECT * FROM registrations WHERE email = $1';
+
+// Check if phonenumber exists
+const userphone = 'SELECT * FROM registrations WHERE phonenumber = $1';
+
 sqlQuery.registrations = registrations;
 sqlQuery.createMeetup = createMeetup;
 sqlQuery.createQuestion = createQuestion;
@@ -83,5 +89,7 @@ sqlQuery.countingupVotes = countingupVotes;
 sqlQuery.countingdownVotes = countingdownVotes;
 sqlQuery.truncateRegistration = truncateRegistration;
 sqlQuery.postComment = postComment;
+sqlQuery.useremail = useremail;
+sqlQuery.userphone = userphone;
 
 export default sqlQuery;

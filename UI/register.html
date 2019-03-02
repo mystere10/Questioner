@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Register</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<script type="text/javascript" src="js/users.js"></script>
 </head>
 <body>
 	<header>
@@ -25,12 +26,14 @@
 			<div class="login">
 				<div class="container">
 					<h1>Register</h1>
-					<form>
-						<p>Fist Name</p>
-						<input type="text" name="fname">
+					<form method="POST" id="signup">
+						<span id="registration-error"></span>
+						<span id="registered"></span>
+						<p>FistName</p>
+						<input type="text" name="firstname">
 
 						<p>Last Name</p>
-						<input type="text" name="lname">
+						<input type="text" name="lastname">
 
 						<p>Other Name</p>
 						<input type="text" name="othername">
@@ -39,15 +42,15 @@
 						<input type="text" name="email">
 
 						<p>Phone Number</p>
-						<input type="text" name="phone">
+						<input type="text" name="phoneNumber">
 
 						<p>Username</p>
 						<input type="text" name="username">
 
 						<p>Password</p>
-						<input type="text" name="password">
+						<input type="password" name="password">
 
-						<input type="submit" name="submit" value="Signup">
+						<button onclick="registration()" id="loginButton">Login</button><br>
 						<a href="login.html">Already have an account?</a>
 					</form>
 				</div>

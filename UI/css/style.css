@@ -204,7 +204,15 @@ header a:hover{
 }
 
 #login-error{
-	color: red;
+	color: #d63031;
+}
+
+#registration-error{
+	color: #d63031;
+}
+
+#registered{
+	color: #2ecc71;
 }
 
 /* STYLING ADMINPAGE

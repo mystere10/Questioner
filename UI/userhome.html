@@ -54,6 +54,8 @@
 			<nav>
 				<ul>
 					<li class="current"><a href="userhome.html">Home</a></li>
+					<li><a href="question.html">Create Question</a></li>
+					<li><a href="meetups.html">Meetups</a></li>
 					<li><a href="profile.html">Profile</a></li>
 					<li><a href="login.html">Logout</a></li>
 				</ul>
@@ -63,51 +65,123 @@
 		<section>
 			<div class="events">
 				<div class="container">
-					<div class="main">
-						<form>
-							<p>Select a meetup</p>
-							<select name="meetuplist">
-								<option value="#">Education</option>
-								<option value="#">Sport</option>
-								<option value="#">Malnutrition</option>
-								<option value="#">Hygiene</option>
-							</select>
+						<div class="questionrow">
+							<h3>Meetup:</h3>
+							<h3>Title:</h3>
+							<p>Why should we care about girls education</p>
+							<p>Created On: 2019-01-19 03:00:00</p>
+							<hr>
+							<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
 
-							<p>Quetion</p>
-							<textarea cols="10" rows="10">Write your question...</textarea>
-							<input type="submit" name="submit" value="Post">
-						</form>
-					</div>
+							<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
 
-					<aside class="aside">
-						<ul id="meetupk">
-							<li>
-								<h3>Eradicating drugs</h3>
-								<p>Location: Kigali telecom house</p>
-								<p>Time: 2019-01-19 03:00:00</p>
+							<a href="#"><span><img src="./assets/comment.png"></span></a>
+							</p>
+						</div>
+						<div class="questionrow">
+								<h3>Meetup:</h3>
+								<h3>Title:</h3>
+								<p>Why should we care about girls education</p>
+								<p>Created On: 2019-01-19 03:00:00</p>
 								<hr>
 								<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
-
+	
+								<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+	
+								<a href="#"><span><img src="./assets/comment.png"></span></a>
+								</p>
+							</div>
+							<div class="questionrow">
+									<h3>Meetup:</h3>
+									<h3>Title:</h3>
+									<p>Why should we care about girls education</p>
+									<p>Created On: 2019-01-19 03:00:00</p>
+									<hr>
+									<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+		
 									<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
-
+		
 									<a href="#"><span><img src="./assets/comment.png"></span></a>
-								</p>
-							</li>
-
-							<li>
-								<h3>Preventing force marriage</h3>
-								<p>Location: Kigali telecom house</p>
-								<p>Time: 2019-02-25 03:00:00</p>
-								<hr>
-								<p><a href="#" onclick="preventing()"><img src="./assets/like.png"></a><span id="prev">0</span>
-
-									<a href="#" onclick="preventing2()"><img src="./assets/unlike.png"></a><span id="preventing2">0</span>
-
-									<a href="#"><span><img src="./assets/comment.png"></span></a>
-								</p>
-							</li>
-						</ul>
-					</aside>
+									</p>
+								</div>
+								<div class="questionrow">
+										<h3>Meetup:</h3>
+										<h3>Title:</h3>
+										<p>Why should we care about girls education</p>
+										<p>Created On: 2019-01-19 03:00:00</p>
+										<hr>
+										<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+			
+										<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+			
+										<a href="#"><span><img src="./assets/comment.png"></span></a>
+										</p>
+									</div>
+									<div class="questionrow">
+											<h3>Meetup:</h3>
+											<h3>Title:</h3>
+											<p>Why should we care about girls education</p>
+											<p>Created On: 2019-01-19 03:00:00</p>
+											<hr>
+											<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+				
+											<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+				
+											<a href="#"><span><img src="./assets/comment.png"></span></a>
+											</p>
+										</div>
+										<div class="questionrow">
+												<h3>Meetup:</h3>
+												<h3>Title:</h3>
+												<p>Why should we care about girls education</p>
+												<p>Created On: 2019-01-19 03:00:00</p>
+												<hr>
+												<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+					
+												<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+					
+												<a href="#"><span><img src="./assets/comment.png"></span></a>
+												</p>
+											</div>
+											<div class="questionrow">
+													<h3>Meetup:</h3>
+													<h3>Title:</h3>
+													<p>Why should we care about girls education</p>
+													<p>Created On: 2019-01-19 03:00:00</p>
+													<hr>
+													<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+						
+													<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+						
+													<a href="#"><span><img src="./assets/comment.png"></span></a>
+													</p>
+												</div>
+												<div class="questionrow">
+														<h3>Meetup:</h3>
+														<h3>Title:</h3>
+														<p>Why should we care about girls education</p>
+														<p>Created On: 2019-01-19 03:00:00</p>
+														<hr>
+														<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+							
+														<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+							
+														<a href="#"><span><img src="./assets/comment.png"></span></a>
+														</p>
+													</div>
+													<div class="questionrow">
+															<h3>Meetup:</h3>
+															<h3>Title:</h3>
+															<p>Why should we care about girls education</p>
+															<p>Created On: 2019-01-19 03:00:00</p>
+															<hr>
+															<p><a href="#" onclick="add()"><img src="./assets/like.png"></a><span id="add">0</span>
+								
+															<a href="#" onclick="substract()"><img src="./assets/unlike.png"></a><span id="sub">0</span>
+								
+															<a href="#"><span><img src="./assets/comment.png"></span></a>
+															</p>
+														</div>
 				</div>
 			</div>
 		</section>	
