@@ -41,3 +41,42 @@ function getAllMeetups() {
 
     });
 }
+
+function upcomingMeetups() {
+  const allMeetups = document.getElementById('meetupsContainer');
+  fetch('../../api/v1/meetups/upcoming', { method: 'GET', headers: appheaders })
+    .then(response => response.json())
+    .then((data) => {
+    //   console.log(data);
+      let displayer = '';
+      if (data.upcoming.length > 0) {
+        const { upcoming } = data;
+        upcoming.forEach((upcomingMeetup) => {
+          displayer += `
+              <div class="questionrow">
+              <h3>Topic: ${upcomingMeetup.topic}</h3>
+              <p>Location: ${upcomingMeetup.location}</p>
+              <p>Happening on: ${upcomingMeetup.hppeningon}</p>
+              <p class="tags">${upcomingMeetup.tags}</p>
+              <hr>
+              <div class="rsvp">
+              <form id="${upcomingMeetup.id}" method="POST">
+              <br>
+              <input type="hidden" value="${upcomingMeetup.id}" name="meetup">
+              <input type="radio" name="rsvp" value="yes">Yes
+              <input type="radio" name="rsvp" value="no">No
+              <input type="radio" name="rsvp" value="maybe">Maybe
+              <button onclick="rsvp(this)" name="${upcomingMeetup.id}">Rsvp</button>
+              </form>
+              </div>
+              </div>
+                  `;
+        });
+      } else {
+        displayer = 'No meetup found';
+      }
+      allMeetups.innerHTML = displayer;
+    }).catch((error) => {
+      console.log(error);
+    });
+}
