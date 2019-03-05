@@ -18,8 +18,8 @@ function login() {
       .then(response => response.json())
       .then((returnUser) => {
         if (returnUser.token && returnUser.user.isadmin) {
-          window.localStorage.setItem('AdminInfo', JSON.stringify(returnUser));
-          window.location.replace('admin.html');
+          window.localStorage.setItem('userInfo', JSON.stringify(returnUser));
+          window.location.replace('meetups.html');
         } else if (returnUser.token && !returnUser.user.isadmin) {
           window.localStorage.setItem('userInfo', JSON.stringify(returnUser));
           window.location.replace('userhome.html');
